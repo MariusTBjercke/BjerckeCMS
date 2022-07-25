@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col">
                 {% if error %}
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger float-end">
                         {{ error.messageKey|trans(error.messageData, 'security') }}
                     </div>
                 {% endif %}
@@ -17,15 +17,20 @@
                 <h1>{{ 'login.title'|trans }}</h1>
 
                 <form action="{{ path('user_login') }}" method="post">
-                    <label for="username">{{ 'Username'|trans }}:</label>
-                    <input type="text" id="username" name="_username" value="{{ last_username }}">
+                    <div class="login__input">
+                        <label for="username">{{ 'Username'|trans }}:</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}">
+                    </div>
 
-                    <label for="password">{{ 'Password'|trans }}:</label>
-                    <input type="password" id="password" name="_password">
+                    <div class="login__input">
+                        <label for="password">{{ 'Password'|trans }}:</label>
+                        <input type="password" id="password" name="_password">
+                    </div>
 
-                    <input type="hidden" name="_target_path" value="/home">
-
-                    <button class="btn" type="submit">{{ 'navigation.login'|trans }}</button>
+                    <div class="login__input">
+                        <input type="hidden" name="_target_path" value="/home">
+                        <button class="btn" type="submit">{{ 'navigation.login'|trans }}</button>
+                    </div>
                 </form>
             </div>
         </div>

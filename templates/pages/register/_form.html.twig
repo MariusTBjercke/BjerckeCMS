@@ -1,4 +1,27 @@
+<div class="register__form">
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="register__input">
+        {{ form_row(form.username, { 'attr': {'class': 'test'} }) }}
+    </div>
+
+    <div class="register__input">
+        {{ form_row(form.firstname) }}
+    </div>
+
+    <div class="register__input">
+        {{ form_row(form.lastname) }}
+    </div>
+
+    <div class="register__input">
+        {{ form_row(form.password) }}
+    </div>
+
+    <div class="register__input">
+        {{ form_row(form.email) }}
+    </div>
+
+    <div class="register__input">
+        {{ form_rest(form) }}
+    </div>
 {{ form_end(form) }}
+</div>

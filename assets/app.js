@@ -13,6 +13,7 @@ import "@assets/js/pages/forum";
 // Components
 import "@assets/js/components/header";
 import "@assets/js/components/footer";
+import "@assets/js/components/Alert";
 
 // Tiles
 // import '@tiles/Articles/New/newarticle';

@@ -1,5 +1,5 @@
 .alert {
-  animation: alertHide 0.6s ease-in-out 5s forwards;
+  animation: alertHide 0.6s ease-in-out 5s forwards; // Remember to change the delay in the JS file.
 }
 
 @keyframes alertHide {

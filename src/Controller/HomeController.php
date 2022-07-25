@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController {
     public function __construct() {
-        //
     }
 
     /**
@@ -25,8 +24,6 @@ class HomeController extends AbstractController {
      * @Route("/home", name="homepage")
      */
     public function index(Request $request): Response {
-        return $this->render('pages/home/index.html.twig', [
-            'languageCode' => $request->getLocale(),
-        ]);
+        return $this->render('pages/home/index.html.twig');
     }
 }

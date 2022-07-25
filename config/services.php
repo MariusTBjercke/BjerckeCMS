@@ -14,10 +14,4 @@ return static function (ContainerConfigurator $configurator) {
         ->autoconfigure();
 
     $services->load('App\\', '../src/*');
-
-    // Events
-    $services->set(WelcomeEmail::class)->tag('doctrine.event_listener', [
-        'event' => 'postPersist',
-        'entity' => User::class,
-    ]);
 };

@@ -2,20 +2,21 @@
 
 namespace App\Controller;
 
-use App\Exception\UserNotFoundException;
-use App\Exception\WrongPasswordException;
 use App\Form\UserType;
 use App\Request\CreateUserRequest;
-use App\Request\LoginRequest;
 use App\Service\CreateUserService;
-use App\Service\LoginService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Translation\LocaleSwitcher;
 
 class UserController extends AbstractController {
+    public function __construct(LocaleSwitcher $localeSwitcher) {
+        $this->localeSwitcher = $localeSwitcher;
+    }
+
     /**
      * @Route("/register", name="user_new", methods={"GET", "POST"})
      */
@@ -64,5 +65,18 @@ class UserController extends AbstractController {
      * @Route("/logout", name="user_logout", methods={"GET"})
      */
     public function logout(): void {
+    }
+
+    /**
+     * Change language/locale and go back to the previous page.
+     *
+     * @Route("/lang/{locale}", name="change_locale", methods={"GET"})
+     */
+    public function changeLocale(Request $request, string $locale): Response {
+        $request->getSession()->set('_locale', $locale);
+
+        $refUrl = $request->headers->get('referer');
+
+        return $this->redirect($refUrl);
     }
 }

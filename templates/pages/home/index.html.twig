@@ -8,18 +8,13 @@
 
     <div class="container">
         <div class="row">
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
             <div class="col">
-                {{ languageCode }}
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success float-end">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
                 {% if app.user is not null %} {{ app.user.username }} {% endif %}
             </div>
         </div>

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Forum;
 
-use App\Service\ChangeLocaleService;
+use App\Service\GetLocaleService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/forum")
  */
 class ForumController extends AbstractController {
-    private ChangeLocaleService $changeLocaleService;
+    private GetLocaleService $changeLocaleService;
 
-    public function __construct(ChangeLocaleService $changeLocaleService) {
+    public function __construct(GetLocaleService $changeLocaleService) {
         $this->changeLocaleService = $changeLocaleService;
     }
 

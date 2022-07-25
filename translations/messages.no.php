@@ -69,4 +69,5 @@ return [
     'Content' => 'Innhold',
     'Submit' => 'Send',
     'Close' => 'Lukk',
+    'Register' => 'Registrer',
 ];

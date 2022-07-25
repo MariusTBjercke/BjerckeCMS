@@ -69,4 +69,5 @@ return [
     'Content' => 'Content',
     'Submit' => 'Submit',
     'Close' => 'Close',
+    'Register' => 'Register',
 ];
