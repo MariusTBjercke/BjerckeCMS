@@ -16,14 +16,7 @@ use Doctrine\ORM\Mapping\Table;
  * @Entity
  * @Table(name="articles")
  */
-class Article {
-    /**
-     * @Column(type="integer")
-     * @Id
-     * @GeneratedValue
-     */
-    private string $id;
-
+class Article extends AbstractEntity {
     /**
      * @Column(type="string")
      */
@@ -53,23 +46,6 @@ class Article {
      * @Column(type="string")
      */
     private string $date;
-
-    /**
-     * @return string
-     */
-    public function getId(): string {
-        return $this->id;
-    }
-
-    /**
-     * @param string $id
-     * @return Article
-     */
-    public function setId(string $id): Article {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * @return string

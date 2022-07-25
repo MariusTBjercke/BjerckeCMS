@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Entity\Forum;
 
+use App\Entity\AbstractEntity;
 use App\Entity\User;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
@@ -16,14 +15,7 @@ use Doctrine\ORM\Mapping\Table;
  * @Entity
  * @Table(name="forum_posts")
  */
-class Post {
-    /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
-     */
-    private int $id;
-
+class Post extends AbstractEntity {
     /**
      * @Column(type="string")
      */
@@ -43,16 +35,6 @@ class Post {
      * @Column(type="string")
      */
     private string $date;
-
-    public function getId(): int {
-        return $this->id;
-    }
-
-    public function setId(int $id): Post {
-        $this->id = $id;
-
-        return $this;
-    }
 
     public function getTitle(): string {
         return $this->title;

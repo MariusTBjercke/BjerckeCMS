@@ -2,6 +2,7 @@
 
 namespace App\Entity\Blog;
 
+use App\Entity\AbstractEntity;
 use App\Entity\User;
 use App\Repository\BlogPostRepository;
 use DateTimeInterface;
@@ -12,14 +13,7 @@ use Doctrine\ORM\Mapping\Table;
  * @ORM\Entity(repositoryClass=BlogPostRepository::class)
  * @Table(name="blog_posts")
  */
-class Post {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private ?int $id;
-
+class Post extends AbstractEntity {
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -38,16 +32,6 @@ class Post {
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?DateTimeInterface $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private ?DateTimeInterface $updatedAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
     private ?DateTimeInterface $publishedAt;
 
     /**
@@ -55,10 +39,6 @@ class Post {
      * @ORM\JoinColumn(nullable=false)
      */
     private ?User $author;
-
-    public function getId(): ?int {
-        return $this->id;
-    }
 
     public function getTitle(): ?string {
         return $this->title;
@@ -86,26 +66,6 @@ class Post {
 
     public function setPublished(bool $published): self {
         $this->published = $published;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?DateTimeInterface {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(DateTimeInterface $createdAt): self {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?DateTimeInterface {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(DateTimeInterface $updatedAt): self {
-        $this->updatedAt = $updatedAt;
 
         return $this;
     }

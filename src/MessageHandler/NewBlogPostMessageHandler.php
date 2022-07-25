@@ -41,9 +41,7 @@ final class NewBlogPostMessageHandler implements MessageHandlerInterface {
             ->setContent($message->getContent())
             ->setAuthor($user)
             ->setPublished(true)
-            ->setPublishedAt(new DateTime())
-            ->setCreatedAt(new DateTime())
-            ->setUpdatedAt(new DateTime());
+            ->setPublishedAt(new DateTime());
 
         $this->postRepository->add($post, true);
 
