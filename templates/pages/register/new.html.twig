@@ -1,0 +1,24 @@
+{% extends "grid/base.html.twig" %}
+{% set css = "register" %}
+
+{% block title %}{{ 'user.new'|trans }}{% endblock %}
+
+{% block maincontent %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                <h1>{{ 'user.new'|trans }}</h1>
+
+                {{ include('pages/register/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "grid/base.html.twig" %}
+{% set css = "blog" %}
+{% set controller = "blog" %}
+
+{% block maincontent %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>{% trans %}blog.title{% endtrans %}</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="blog__posts" data-blog-target="postsContainer">
+                    {% if posts is not empty %}
+                        {% for post in posts %}
+                            <div class="blog__post">
+                                <div class="blog__post-title">
+                                    {{ post.title }}
+                                </div>
+                                <div class="blog__post-content">
+                                    {{ post.content|raw }}
+                                </div>
+                                <div class="blog__post-author">
+                                    {{ post.author }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% elseif posts is empty %}
+                        <div class="blog__post blog__post_hidden">
+                            <div class="blog__post-title">
+                            </div>
+                            <div class="blog__post-content">
+                            </div>
+                            <div class="blog__post-author">
+                            </div>
+                        </div>
+                        <div class="blog__no-posts-yet">
+                            <p>No posts yet.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {% if app.user is not null %}
+                    <button class="btn" data-action="click->blog#newPost">Create new blog post</button>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {{ include('pages/blog/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

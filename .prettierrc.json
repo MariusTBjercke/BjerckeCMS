@@ -1,0 +1,13 @@
+{
+  "phpVersion": "8.1",
+  "printWidth": 120,
+  "braceStyle": "1tbs",
+  "overrides": [
+    {
+      "files": "*.php",
+      "options": {
+        "singleQuote": true
+      }
+    }
+  ]
+}

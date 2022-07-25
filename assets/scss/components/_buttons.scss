@@ -1,0 +1,5 @@
+@use '../mixins' as mixin;
+
+.btn {
+  @include mixin.std-button;
+}

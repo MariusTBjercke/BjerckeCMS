@@ -1,0 +1,1 @@
+# All .sql files in this folder will be executed at boot

@@ -1,0 +1,16 @@
+<div class="forum__latest-posts-item {% if hidden %}hidden{% endif %}">
+    <div class="forum__latest-posts-item-title">
+        {{ title }}
+    </div>
+    <div class="forum__latest-posts-item-content">
+        {{ content|raw }}
+    </div>
+    <div class="forum__latest-posts-item-info">
+        <div class="forum__latest-posts-item-info-author">
+            <span>Author:</span> <span class="forum__latest-posts-item-info-author_field">{{ author }}</span>
+        </div>
+        <div class="forum__latest-posts-item-info-date">
+            <span data-date="{{ date }}">Posted:</span> <span class="forum__latest-posts-item-info-date_timeago">{{ time_ago }}</span>
+        </div>
+    </div>
+</div>

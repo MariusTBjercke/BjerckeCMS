@@ -1,0 +1,2 @@
+* * * * * echo $(date +\%Y\-\%m\-\%d\ \%H\:\%M) "- Users checked." >> /var/log/cron.log
+# Empty line

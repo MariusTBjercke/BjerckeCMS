@@ -1,0 +1,44 @@
+@use 'buttons' as btn;
+@use '../variables' as var;
+
+@mixin form-style {
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+    margin-bottom: 10px;
+
+    div {
+      display: inline-block;
+
+      &:first-child {
+        padding-right: 10px;
+        min-width: 90px;
+      }
+
+      &:last-child {
+        display: flex;
+        gap: 5px;
+      }
+    }
+  }
+
+  &__error-message {
+    font-size: 0.75em;
+    margin-top: 5px;
+  }
+
+  &__input-error {
+    border-color: var.$error-color;
+    border-width: 3px;
+  }
+
+  &__submit {
+    @include btn.std-button;
+
+    &:hover {
+      transform: scale(1.05);
+      transition: .25s;
+    }
+  }
+}

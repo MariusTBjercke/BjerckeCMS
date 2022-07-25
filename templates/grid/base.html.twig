@@ -1,0 +1,35 @@
+ {% set user = app.session.get('user') %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('build/images/icons/favicon.svg') }}">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+
+{% include 'components/header.html.twig' %}
+
+<main>
+
+    <article{% if css is defined %} class="{{ css }}"{% endif %}{% if controller is defined %} data-controller="{{ controller }}"{% endif %}>
+        {% block maincontent %}
+        {% endblock %}
+    </article>
+
+</main>
+
+{% include 'components/footer.html.twig' %}
+
+</body>
+</html>

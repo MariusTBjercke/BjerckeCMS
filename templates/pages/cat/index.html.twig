@@ -1,0 +1,13 @@
+{% extends "grid/base.html.twig" %}
+
+{% block maincontent %}
+
+    <h2>Tilfedig kattefakta</h2>
+
+    <ul>
+        {% for fact in facts %}
+            <li>{{ fact }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "grid/base.html.twig" %}
+{% set css = "home" %}
+{% set controller = "home" %}
+
+{% block title %}Home{% endblock %}
+
+{% block maincontent %}
+
+    <div class="container">
+        <div class="row">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ languageCode }}
+                {% if app.user is not null %} {{ app.user.username }} {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

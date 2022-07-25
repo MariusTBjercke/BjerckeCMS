@@ -1,0 +1,21 @@
+<div class="blog__new-post" data-blog-target="newPost">
+    <div class="blog__new-post-title">
+        <h4>{{ 'blog.new_post.new'|trans }}</h4>
+    </div>
+    <div class="blog__new-post-form">
+        {{ form_start(form) }}
+        <div class="blog__new-post-input">
+            {{ form_row(form.title) }}
+        </div>
+        <div class="blog__new-post-input">
+            {{ form_row(form.content) }}
+        </div>
+        <div class="blog__new-post-input">
+            <div class="blog__new-post-buttons">
+                {{ form_row(form.submit) }}
+                {{ form_row(form.close) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>

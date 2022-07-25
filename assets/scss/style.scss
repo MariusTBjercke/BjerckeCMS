@@ -1,0 +1,56 @@
+// Pages
+@use "~@assets/scss/pages/forum" as *;
+@use "~@assets/scss/pages/home" as *;
+@use "~@assets/scss/pages/blog" as *;
+
+// Components
+@use "~@assets/scss/components/header" as *;
+@use "~@assets/scss/components/footer" as *;
+@use "~@assets/scss/components/alert" as *;
+@use "~@assets/scss/components/buttons" as *;
+@use "~@assets/scss/shared" as *;
+
+// Node modules
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/bootstrap-reboot";
+@import "~bootstrap/scss/bootstrap-utilities";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~material-icons/iconfont/material-icons";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: #000000;
+  min-width: 300px;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  z-index: -2;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+a {
+  color: #000000;
+
+  &:hover {
+    color: #000000;
+  }
+}
+
+main {
+  flex: 1;
+}

@@ -1,0 +1,81 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: webserver
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - db
+    environment:
+      TZ: "Europe/Amsterdam"
+    volumes:
+      - ./:/var/www/html:cached
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./docker/php/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
+      - ./docker/php/ssl:/etc/apache2/ssl
+      - ./docker/php/tmp/xdebug:/tmp/xdebug
+      - ./docker/log/apache2:/var/log/apache2
+      - ./docker/.bashrc:/root/.bashrc
+    ports:
+      - "80:80"
+      - "443:443"
+
+  database:
+    container_name: db
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./docker/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db:/var/lib/mysql
+      - ./docker/.bashrc:/root/.bashrc
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "bjerckecms"
+      MYSQL_USER: "bjerckecms"
+      MYSQL_PASSWORD: "bjerckecms"
+      TZ: "Europe/Amsterdam"
+    ports:
+      - "3306:3306"
+
+#  phpmyadmin:
+#    container_name: phpmyadmin
+#    image: phpmyadmin/phpmyadmin:latest
+#    restart: always
+#    ports:
+#      - "8080:80"
+#    environment:
+#      PMA_USER: "root"
+#      PMA_PASSWORD: "root"
+
+#  cron:
+#    build:
+#      context: ./docker/cron
+#      dockerfile: Dockerfile
+#    container_name: cron
+#    volumes:
+#      - ./docker/cron/etc/cron.d:/etc/cron.d/
+#      - ./docker/log/cron:/var/log/cron
+#      - ./:/var/www/html/
+#      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+#      - ./docker/.bashrc:/root/.bashrc
+#    environment:
+#      TZ: "Europe/Amsterdam"
+
+#  build:
+#    container_name: build
+#    image: node:slim
+#    user: "node"
+#    working_dir: /home/node/app
+#    environment:
+#      - NODE_ENV=development
+#    volumes:
+#      - ./:/home/node/app
+#    command: "npm run build"
+volumes:
+  db:

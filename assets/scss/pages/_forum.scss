@@ -1,0 +1,149 @@
+@use "~@assets/scss/variables" as *;
+@use "~@assets/scss/mixins" as mixin;
+
+$forum-bg-color: rgba(255, 255, 255, 1);
+$forum-border-color: #000000;
+$forum-padding: 20px;
+
+.forum {
+  margin-bottom: 50px;
+  color: #000000;
+
+  h1 {
+    color: #ffffff;
+  }
+
+  &__no-posts {
+    padding: $forum-padding;
+  }
+
+  &__wrapper {
+    border: 1px solid $forum-border-color;
+    width: 100%;
+    min-height: 300px;
+    background: $forum-bg-color;
+  }
+
+  &__header {
+    padding: $forum-padding;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid $forum-border-color;
+  }
+
+  &__title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  &__sub-title {
+    font-size: 1.2em;
+  }
+
+  &__latest-posts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &-title {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 5px;
+      padding: $forum-padding;
+    }
+
+    &-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-top: 1px solid $forum-border-color;
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      border-bottom: 1px solid $forum-border-color;
+      padding: 15px $forum-padding;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &_disabled {
+        display: none;
+      }
+
+      &-title {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      &-info {
+        span {
+          &:first-child {
+            font-weight: bold;
+          }
+        }
+
+        &-date {
+          &_timeago {
+            display: inline;
+          }
+        }
+
+        &-author {
+        }
+      }
+    }
+  }
+
+  &__new-post {
+    margin-top: 20px;
+    z-index: 999;
+
+    &_input {
+      input {
+        min-width: 300px;
+        padding: 7.5px;
+        border-radius: 10px;
+        border: 1px solid $forum-border-color;
+      }
+
+      textarea {
+        min-width: 300px;
+        min-height: 100px;
+      }
+
+      button {
+        @include mixin.std-button;
+      }
+    }
+
+    &-btn {
+      @include mixin.std-button;
+    }
+
+    &-form {
+      border: 1px solid $forum-border-color;
+      padding: $forum-padding;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      background: $forum-bg-color;
+
+      &_active {
+        display: flex;
+      }
+    }
+
+    &-title {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  }
+}

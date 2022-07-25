@@ -1,0 +1,21 @@
+<div class="blog__new-post" data-blog-target="newPost">
+    <div class="blog__new-post-title">
+        <h4>{{ 'blog.new_post.new'|trans }}</h4>
+    </div>
+    <div class="blog__new-post-form">
+        <div class="blog__new-post-input">
+            <label for="title">{{ 'blog.new_post.title'|trans }}</label>
+            <input type="text" id="title" data-blog-target="title">
+        </div>
+        <div class="blog__new-post-input">
+            <label for="content">{{ 'blog.new_post.content'|trans }}</label>
+            <textarea data-blog-target="content" id="content"></textarea>
+        </div>
+        <div class="blog__new-post-input">
+            <div class="blog__new-post-buttons">
+                <button class="btn" data-action="click->blog#submit">{{ 'blog.new_post.submit'|trans }}</button>
+                <button class="btn" data-action="click->blog#close">{{ 'blog.new_post.close'|trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>

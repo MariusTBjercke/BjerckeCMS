@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<ruleset name="CoreTrek">
+    <description>CoreTrek coding standard, built on PSR2</description>
+
+    <!-- Use PSR2 as base  -->
+    <rule ref="PSR2">
+        <!-- Skips the 'Opening brace should be on a new line' error  -->
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
+        <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
+
+        <!-- Skips the 'Function closing brace must go on the next line following the body' error  -->
+        <exclude name="PSR2.Methods.FunctionClosingBrace" />
+
+        <!-- Allow underscore as first char in method names and variables -->
+        <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+        <exclude name="PSR2.Classes.PropertyDeclaration.Underscore" />
+
+        <!-- Do not require classes to be a part of a namespace  -->
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />
+
+    </rule>
+
+    <!-- Require method opening braces on same line   -->
+    <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+
+    <!-- Require class opening braces on same line   -->
+    <rule ref="Generic.Classes.OpeningBraceSameLine" />
+
+    <!-- Do not allow the same class names in multiple files   -->
+    <rule ref="Generic.Classes.DuplicateClassName" />
+
+    <!-- === ADDITIONAL REQUIREMENTS ===   -->
+    <!--  rule ref="Squiz.Operators.ComparisonOperatorUsage" / -->
+
+
+    <!-- === COMMENTS ===   -->
+
+
+    <!-- Require comments  -->
+    <rule ref="Generic.Commenting.DocComment">
+
+        <!-- .. but do not require param groups.. -->
+        <exclude name="Generic.Commenting.DocComment.NonParamGroup" />
+        <!-- .. or indenting of tag values -->
+        <exclude name="Generic.Commenting.DocComment.TagValueIndent" />
+
+    </rule>
+
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <!-- .. but do not require comments on throw tags -->
+        <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows" />
+        <!-- .. or spacing after param type -->
+        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType" />
+        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamName" />
+
+        <!-- we allow comments to not have a return tag (instead of having void on everything)-->
+        <exclude name="Squiz.Commenting.FunctionComment.MissingReturn" />
+
+        <!-- We do not require scalar type hints (e.g. function (int $id)  -->
+        <exclude name="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing" />
+    </rule>
+
+    <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
+
+    <rule ref="Squiz.Commenting.ClassComment" />
+
+
+</ruleset>

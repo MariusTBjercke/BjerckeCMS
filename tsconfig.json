@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES2020",
+    "baseUrl": "./",
+    "strict": false,
+    "paths": {
+      "@assets/*": [
+        "assets/*"
+      ]
+    },
+    "moduleResolution": "Node",
+    "typeRoots": [
+      "node_modules/@types",
+      "assets/types"
+    ],
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

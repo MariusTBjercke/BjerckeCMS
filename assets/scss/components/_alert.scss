@@ -1,0 +1,12 @@
+.alert {
+  animation: alertHide 0.6s ease-in-out 5s forwards;
+}
+
+@keyframes alertHide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

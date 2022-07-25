@@ -1,0 +1,19 @@
+@use '../variables' as *;
+
+@mixin std-button {
+  padding: .5rem 1rem;
+  background: $btn-bg-color;
+  color: #ffffff;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #000000;
+  }
+
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+}

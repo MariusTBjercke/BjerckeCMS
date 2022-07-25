@@ -1,0 +1,67 @@
+{% extends "grid/base.html.twig" %}
+{% set css = "forum" %}
+
+{% block maincontent %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>{% trans %}forum.title{% endtrans %}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="forum__wrapper">
+                    <div class="forum__header">
+                        <div class="forum__title">{% trans %}forum.title{% endtrans %}</div>
+                        <div class="forum__sub-title">{% trans %}forum.welcome{% endtrans %}</div>
+                    </div>
+                    <div class="forum__latest-posts">
+                        <div class="forum__latest-posts-title">{% trans %}forum.latest{% endtrans %}</div>
+                        <div class="forum__latest-posts-list">
+{#                            {% embed "pages/forum/front_post.html.twig" with { hidden: true } %}#}
+{#                            {% endembed %}#}
+{#                            {% for post in tile.getLatestPosts() %}#}
+{#                                {% embed "Forum/front_post.html.twig" with { title: post.getTitle, content: post.getContent, author: post.getAuthor.getUsername, time_ago: post.getTimeAgo, date: post.getDate } %}#}
+{#                                {% endembed %}#}
+{#                            {% endfor %}#}
+{#                            {% if tile.getLatestPosts is empty %}#}
+                                <div class="forum__no-posts">{% trans %}forum.no_posts{% endtrans %}</div>
+{#                            {% endif %}#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{#    {% if user.getLoggedIn %}#}
+        <div class="container forum__new-post">
+            <div class="row">
+                <div class="col">
+                    <a class="forum__new-post-btn">{% trans %}forum.new_post.new{% endtrans %}</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="forum__new-post-form">
+                        <div class="forum__new-post-title">{% trans %}forum.new_post.title{% endtrans %}</div>
+                        <div class="forum__new-post_input">
+                            <label>
+                                <input type="text" id="title" placeholder="{% trans %}forum.new_post.title{% endtrans %}"/>
+                            </label>
+                        </div>
+                        <div class="forum__new-post_input">
+                            <textarea id="content" placeholder="Content"></textarea>
+                        </div>
+                        <div class="forum__new-post_input">
+                            <button id="submit">{% trans %}forum.new_post.submit{% endtrans %}</button>
+                            <button id="close">{% trans %}forum.new_post.close{% endtrans %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#    {% endif %}#}
+
+{% endblock %}
