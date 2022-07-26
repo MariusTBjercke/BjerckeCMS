@@ -1,49 +1,24 @@
-<!DOCTYPE html>
+{% extends "grid/base.html.twig" %}
+{% set css = "register" %}
 
-<title>User index</title>
+{% block title %}{{ 'user.new'|trans }}{% endblock %}
 
-{% block body %}
-    <h1>User index</h1>
+{% block maincontent %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>LoggedIn</th>
-                <th>IsAdmin</th>
-                <th>LastActivity</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.loggedIn ? 'Yes' : 'No' }}</td>
-                <td>{{ user.isAdmin ? 'Yes' : 'No' }}</td>
-                <td>{{ user.lastActivity }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger float-end">
+                        {{ message }}
+                    </div>
+                {% endfor %}
 
-    <a href="{{ path('user_new') }}">Create new</a>
+                <h1>{{ 'user.new'|trans }}</h1>
+
+                {{ include('pages/register/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

@@ -2,48 +2,36 @@
 
 namespace App\Controller;
 
-use App\Form\UserType;
-use App\Request\CreateUserRequest;
+use App\Entity\User;
+use App\Form\Type\UserType;
 use App\Service\CreateUserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Translation\LocaleSwitcher;
 
 class UserController extends AbstractController {
-    public function __construct(LocaleSwitcher $localeSwitcher) {
-        $this->localeSwitcher = $localeSwitcher;
+    public function __construct() {
     }
 
     /**
      * @Route("/register", name="user_new", methods={"GET", "POST"})
      */
     public function new(Request $request, CreateUserService $createUserService): Response {
-        $createUserRequest = new CreateUserRequest();
+        $user = new User();
 
-        $form = $this->createForm(UserType::class, $createUserRequest);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $createUserService->createUser($createUserRequest);
-
-            if ($result === 'username') {
-                $this->addFlash('error', 'Username already exists.');
-                return $this->redirectToRoute('user_new');
-            }
-
-            if ($result === 'email') {
-                $this->addFlash('error', 'Email already exists.');
-                return $this->redirectToRoute('user_new');
-            }
+            $result = $createUserService->createUser($user);
 
             $this->addFlash('success', 'User created successfully.');
             return $this->redirectToRoute('homepage', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('pages/register/new.html.twig', [
+        return $this->renderForm('pages/register/index.html.twig', [
             'form' => $form,
         ]);
     }

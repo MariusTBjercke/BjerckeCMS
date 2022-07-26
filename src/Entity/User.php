@@ -6,11 +6,15 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\OneToMany;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="This email is taken.", groups="registration")
+ * @UniqueEntity(fields={"username"}, message="This username is taken.", groups="registration")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface {
     /**
@@ -21,7 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
     private $id;
 
     /**
-     * @Column(type="string", length=255)
+     * @Column(type="string", length=255, unique=true)
      */
     private string $username;
 
@@ -41,14 +45,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
     private string $password;
 
     /**
-     * @Column(type="string", length=255)
+     * @Column(type="string", length=255, unique=true)
+     * @Assert\Email(groups="registration")
      */
     private string $email;
-
-    /**
-     * @OneToMany(targetEntity="\App\Entity\Forum\Post", mappedBy="author")
-     */
-    private mixed $forumPosts;
 
     /**
      * @OneToMany(targetEntity="\App\Entity\Blog\Post", mappedBy="author")

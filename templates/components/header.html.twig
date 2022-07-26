@@ -25,10 +25,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="align-left">
-                            <a href="{{ path('change_locale', { locale: language_code.getOppositeLocale }) }}">LANG</a>
-                        </div>
-                        <div class="top-bar__right-links">
+                        <div class="top-bar__links">
+                            <a href="{{ path('change_locale', { locale: language_code.getOppositeLocale }) }}"><span
+                                    class="material-icons">language</span> {{ language_code.getOppositeLocale|upper }}
+                            </a>
                             {% if app.user %}
                                 <a href="{{ path('homepage') }}">{{ app.user.username }}<span class="material-icons">account_circle</span></a>
                             {% endif %}

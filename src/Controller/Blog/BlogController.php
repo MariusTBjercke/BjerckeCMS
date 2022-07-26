@@ -3,8 +3,7 @@
 namespace App\Controller\Blog;
 
 use App\CQRS\Query\BlogPostsQuery;
-use App\Entity\User;
-use App\Form\Blog\BlogPostType;
+use App\Form\Type\Blog\BlogPostType;
 use App\Message\NewBlogPostMessage;
 use App\Request\NewBlogPostRequest;
 use App\Shared\AjaxFormErrorHandler;
@@ -16,8 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\ConstraintViolationInterface;
 
 /**
  * @Route("/blog")

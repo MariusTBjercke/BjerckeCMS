@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\User;
 use App\Message\CreateUserMessage;
 use App\Request\CreateUserRequest;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -15,16 +16,17 @@ class CreateUserService {
         $this->bus = $bus;
     }
 
-    public function createUser(CreateUserRequest $request): mixed {
+    public function createUser(User $request): mixed {
         $message = new CreateUserMessage(
-            $request->username,
-            $request->firstname,
-            $request->lastname,
-            $request->password,
-            $request->email,
-            $request->loggedIn,
-            $request->isAdmin,
+            $request->getUsername(),
+            $request->getFirstname(),
+            $request->getLastname(),
+            $request->getPassword(),
+            $request->getEmail(),
+            false,
+            false,
         );
+
         $envelope = $this->bus->dispatch($message);
 
         return $envelope->last(HandledStamp::class)->getResult();

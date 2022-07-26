@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\Blog;
+namespace App\Form\Type\Blog;
 
 use App\Request\NewBlogPostRequest;
 use Symfony\Component\Form\AbstractType;

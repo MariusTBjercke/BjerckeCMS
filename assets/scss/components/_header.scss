@@ -49,17 +49,15 @@ nav {
       }
     }
 
-    &__right-links {
+    &__links {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 5px;
+      justify-content: space-between;
 
       a {
         display: inherit;
-        align-items: inherit;
-        justify-content: inherit;
-        gap: inherit;
+        justify-content: space-between;
+        gap: 3px;
       }
     }
   }

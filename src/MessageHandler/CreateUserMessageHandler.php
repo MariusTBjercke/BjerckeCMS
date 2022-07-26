@@ -34,17 +34,6 @@ final class CreateUserMessageHandler implements MessageHandlerInterface {
      * @return string|bool Return a string to indicate a failure or true to indicate success.
      */
     public function __invoke(CreateUserMessage $message): string|bool {
-        // Return string if username or email already exists
-        $user = $this->userRepository->findByUsername($message->getUsername());
-        if ($user) {
-            return 'username';
-        }
-
-        $user = $this->userRepository->findByEmail($message->getEmail());
-        if ($user) {
-            return 'email';
-        }
-
         // Create user
         $user = (new User())
             ->setUsername($message->getUsername())

@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Type;
 
-use App\Request\CreateUserRequest;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class UserType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void {
@@ -16,6 +19,7 @@ class UserType extends AbstractType {
             ->add('username', TextType::class, [
                 'label' => 'Username',
                 'required' => true,
+                'constraints' => [new NotBlank(), new Length(['min' => 3])],
                 'attr' => [
                     'id' => 'username',
                 ],
@@ -23,6 +27,7 @@ class UserType extends AbstractType {
             ->add('firstname', TextType::class, [
                 'label' => 'Firstname',
                 'required' => true,
+                'constraints' => [new NotBlank(), new Length(['min' => 1])],
                 'attr' => [
                     'id' => 'firstname',
                 ],
@@ -30,13 +35,15 @@ class UserType extends AbstractType {
             ->add('lastname', TextType::class, [
                 'label' => 'Lastname',
                 'required' => true,
+                'constraints' => [new NotBlank(), new Length(['min' => 1])],
                 'attr' => [
                     'id' => 'lastname',
                 ],
             ])
-            ->add('password', TextType::class, [
+            ->add('password', PasswordType::class, [
                 'label' => 'Password',
                 'required' => true,
+                'constraints' => [new NotBlank(), new Length(['min' => 3])],
                 'attr' => [
                     'id' => 'password',
                 ],
@@ -44,6 +51,7 @@ class UserType extends AbstractType {
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'required' => true,
+                'constraints' => [new NotBlank(), new Length(['min' => 3])],
                 'attr' => [
                     'id' => 'email',
                 ],
@@ -58,7 +66,8 @@ class UserType extends AbstractType {
 
     public function configureOptions(OptionsResolver $resolver): void {
         $resolver->setDefaults([
-            'data_class' => CreateUserRequest::class,
+            'data_class' => User::class,
+            'validation_groups' => ['registration'],
         ]);
     }
 }
