@@ -8,4 +8,6 @@ return static function (TwigConfig $twig) {
     $twig->defaultPath('%kernel.project_dir%/templates');
 
     $twig->global('language_code')->value(service(GetLocaleService::class));
+
+    $twig->global('year')->value(date('Y'));
 };

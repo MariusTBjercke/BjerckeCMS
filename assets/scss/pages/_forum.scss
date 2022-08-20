@@ -119,12 +119,12 @@ $forum-padding: 20px;
       }
 
       button {
-        @include mixin.std-button;
+        @include mixin.btn-std-button;
       }
     }
 
     &-btn {
-      @include mixin.std-button;
+      @include mixin.btn-std-button;
     }
 
     &-form {

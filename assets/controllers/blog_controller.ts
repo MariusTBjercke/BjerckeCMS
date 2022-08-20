@@ -85,7 +85,7 @@ export default class extends Controller {
   }
 
   addPlaceholderPost(result) {
-    const dummy = this.postsContainerTarget.querySelectorAll(".blog__post")[0] as HTMLDivElement;
+    const dummy: Element = this.postsContainerTarget.querySelectorAll(".blog__post")[0];
     const post = dummy.cloneNode(true) as HTMLDivElement;
     const noPostsYetMessage = this.postsContainerTarget.querySelector(".blog__no-posts-yet");
     post.classList.remove("blog__post_hidden");

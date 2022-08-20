@@ -36,10 +36,6 @@ nav {
     display: flex;
     align-items: center;
 
-    span {
-      font-weight: bold;
-    }
-
     a {
       text-decoration: none;
       color: var.$font-color-bg;
@@ -57,7 +53,7 @@ nav {
       a {
         display: inherit;
         justify-content: space-between;
-        gap: 3px;
+        gap: 1px;
       }
     }
   }

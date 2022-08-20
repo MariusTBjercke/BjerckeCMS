@@ -9,18 +9,7 @@ return [
         'logout' => 'Logg ut',
     ],
 
-    'user' => [
-        'title' => 'Bruker',
-        'new' => 'Ny bruker',
-    ],
-
-    'home' => [
-        'title' => 'Hjem',
-        'slug' => 'home',
-    ],
-
     'blog' => [
-        'slug' => 'blog',
         'title' => 'Blogg',
         'welcome' => 'Velkommen til bloggen.',
         'latest' => 'Siste artikler',
@@ -41,7 +30,6 @@ return [
     ],
 
     'forum' => [
-        'slug' => 'forum',
         'title' => 'Forum',
         'welcome' => 'Velkommen til forumet.',
         'latest' => 'Siste tråder',
@@ -56,11 +44,15 @@ return [
 
     'login' => [
         'title' => 'Logg inn',
-        'slug' => 'login',
+    ],
+
+    'user' => [
+        'new' => 'Ny bruker',
     ],
 
     'Username' => 'Brukernavn',
     'Password' => 'Passord',
+    'Repeat Password' => 'Gjenta Passord',
     'Firstname' => 'Fornavn',
     'Lastname' => 'Etternavn',
     'Email' => 'E-post',

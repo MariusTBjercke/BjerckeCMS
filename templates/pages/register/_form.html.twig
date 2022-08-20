@@ -19,9 +19,15 @@
     </div>
 
     <div class="register__input">
-        {{ form_label(form.password) }}
-        {{ form_widget(form.password) }}
-        {{ form_errors(form.password) }}
+        {{ form_label(form.password.first) }}
+        {{ form_widget(form.password.first) }}
+        {{ form_errors(form.password.first) }}
+    </div>
+
+    <div class="register__input">
+        {{ form_label(form.password.second) }}
+        {{ form_widget(form.password.second) }}
+        {{ form_errors(form.password.second) }}
     </div>
 
     <div class="register__input">

@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -40,12 +41,23 @@ class UserType extends AbstractType {
                     'id' => 'lastname',
                 ],
             ])
-            ->add('password', PasswordType::class, [
-                'label' => 'Password',
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'The password fields must match.',
+                'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'constraints' => [new NotBlank(), new Length(['min' => 3])],
-                'attr' => [
-                    'id' => 'password',
+                'constraints' => [new NotBlank(), new Length(['min' => 6])],
+                'first_options' => [
+                    'label' => 'Password',
+                    'attr' => [
+                        'id' => 'password',
+                    ],
+                ],
+                'second_options' => [
+                    'label' => 'Repeat Password',
+                    'attr' => [
+                        'id' => 'password-confirm',
+                    ],
                 ],
             ])
             ->add('email', EmailType::class, [

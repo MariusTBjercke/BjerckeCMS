@@ -1,18 +1,6 @@
-// Pages
-@use "~@assets/scss/pages/forum" as *;
-@use "~@assets/scss/pages/home" as *;
-@use "~@assets/scss/pages/blog" as *;
-@use "~@assets/scss/pages/login" as *;
-@use "~@assets/scss/pages/register" as *;
-
-// Components
-@use "~@assets/scss/components/header" as *;
-@use "~@assets/scss/components/footer" as *;
-@use "~@assets/scss/components/alert" as *;
-@use "~@assets/scss/components/buttons" as *;
-@use "~@assets/scss/shared" as *;
-
 // Node modules
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/bootstrap-grid";
 @import "~bootstrap/scss/bootstrap-reboot";
@@ -21,6 +9,22 @@
 @import "~bootstrap/scss/badge";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import "~material-icons/iconfont/material-icons";
+
+// Pages
+@import "~@assets/scss/pages/forum";
+@import "~@assets/scss/pages/home";
+@import "~@assets/scss/pages/blog";
+@import "~@assets/scss/pages/login";
+@import "~@assets/scss/pages/register";
+
+// Components
+@import "~@assets/scss/components/header";
+@import "~@assets/scss/components/footer";
+@import "~@assets/scss/components/alert";
+@import "~@assets/scss/components/buttons";
+@import "~@assets/scss/shared";
+@import "~@assets/scss/components/billboard";
+@import "~@assets/scss/components/terminal";
 
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');

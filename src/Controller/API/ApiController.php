@@ -24,20 +24,25 @@ class ApiController extends AbstractController {
     }
 
     /**
-     * @Route("/test", name="api_test")
+     * @Route("/login", name="api_login")
      */
-    public function index(): Response {
-        return $this->render('pages/home/home.html.twig');
-    }
+    public function login(): Response {
+        $user = $this->getUser();
 
-    /**
-     * @Route("/new/{name}/{password}/{email}", name="api_new")
-     */
-    public function newFromGet($name, $password, $email): JsonResponse {
-        $message = new CreateUserMessage($name, $password, $email, false, false);
-        $this->messageBus->dispatch($message);
+        if ($user === null) {
+            return new JsonResponse(
+                [
+                    'success' => false,
+                    'message' => 'User not found.',
+                ],
+                Response::HTTP_UNAUTHORIZED,
+            );
+        }
 
-        return new JsonResponse(['status' => 'ok']);
+        return new JsonResponse([
+            'user' => $user->getUserIdentifier(),
+            'token' => null,
+        ]);
     }
 
     /**

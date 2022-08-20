@@ -14,6 +14,8 @@ return static function (SecurityConfig $security) {
         ->loginPath('user_login')
         ->checkPath('user_login');
 
+    $devFirewall->jsonLogin()->checkPath('api_login');
+
     $devFirewall->logout()->path('user_logout');
 
     $mainFirewall = $security->firewall('main');
@@ -22,6 +24,8 @@ return static function (SecurityConfig $security) {
         ->formLogin()
         ->loginPath('user_login')
         ->checkPath('user_login');
+
+    $mainFirewall->jsonLogin()->checkPath('api_login');
 
     $mainFirewall->logout()->path('user_logout');
 

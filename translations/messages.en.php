@@ -9,18 +9,7 @@ return [
         'logout' => 'Logout',
     ],
 
-    'user' => [
-        'title' => 'User',
-        'new' => 'New user',
-    ],
-
-    'home' => [
-        'title' => 'Home',
-        'slug' => 'home',
-    ],
-
     'blog' => [
-        'slug' => 'blog',
         'title' => 'Blog',
         'welcome' => 'Welcome to my blog.',
         'latest' => 'Latest articles',
@@ -41,7 +30,6 @@ return [
     ],
 
     'forum' => [
-        'slug' => 'forum',
         'title' => 'Forum',
         'welcome' => 'Welcome to the forum.',
         'latest' => 'Latest posts',
@@ -56,11 +44,15 @@ return [
 
     'login' => [
         'title' => 'Login',
-        'slug' => 'login',
+    ],
+
+    'user' => [
+        'new' => 'New user',
     ],
 
     'Username' => 'Username',
     'Password' => 'Password',
+    'Repeat Password' => 'Repeat Password',
     'Firstname' => 'Firstname',
     'Lastname' => 'Lastname',
     'Email' => 'Email',
