@@ -231,16 +231,33 @@ export default class Terminal {
       },
 
       help: () => {
-        this.echo("Some commands you can use:");
-        this.echo("- clear");
-        this.echo("- help");
-        this.echo("- login");
+        this.help();
       },
 
       login: () => {
-        this.loginStep1();
+        this.login()["step1"]();
+      },
+
+      logout: () => {
+        this.logout()["step1"]();
+      },
+
+      refresh: () => {
+        this.echo("Refreshing...");
+        this.refreshPage();
       },
     };
+  }
+
+  private help() {
+    const commands = Object.keys(this.commands()).map((key) => {
+      return key;
+    });
+
+    this.echo("Some commands you can use:");
+    commands.forEach((command) => {
+      this.echo("- " + command);
+    });
   }
 
   /**
@@ -284,68 +301,97 @@ export default class Terminal {
     }
   }
 
-  private loginStep1() {
-    this.inputMessage = "Username: ";
-    this.inputAction = async (username) => {
-      this.loginStep2(username);
-    };
-  }
-
-  private loginStep2(username: string) {
-    this.inputStrings.push(username);
-
-    this.inputMessage = "Password: ";
-    this.inputFilter = this.inputFilters.Asterisk;
-    this.inputAction = async (password: string) => {
-      await this.login(password);
-    };
-  }
-
   /**
    * Login to a site user account.
    *
    * @private
-   * @param password Password.
    */
-  private async login(password: string) {
-    const response = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Requested-With": "XMLHttpRequest",
+  private login(): object {
+    return {
+      step1: () => {
+        this.inputMessage = "Username: ";
+        this.inputAction = async (input) => {
+          this.login()["step2"](input);
+        };
       },
-      body: JSON.stringify({
-        username: this.inputStrings[0],
-        password: password,
-      }),
-    });
 
-    const data = await response.json();
+      step2: (input: string) => {
+        this.inputStrings.push(input);
+        this.inputMessage = "Password: ";
+        this.inputFilter = this.inputFilters.Asterisk;
+        this.inputAction = async (input: string) => {
+          await this.login()["step3"](input);
+        };
+      },
 
-    this.clearInputData();
+      step3: async (input: string) => {
+        const username = this.inputStrings[0];
 
-    if (data.user) {
-      this.echo("Login successful!");
-      this.echo("Welcome " + data.user + "!");
-      this.echo("Would you like to refresh the page? (y/n)");
-      this.inputMessage = "(y/n)";
-      this.inputAction = (input) => {
-        this.loginSuccessAction(input);
-      };
-      this.showUserInput();
-    }
+        this.echo("Logging in...");
+        this.clearInputData();
 
-    if (data.error) {
-      this.echo("Login failed: " + data.error);
-    }
+        const response = await fetch("/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+          },
+          body: JSON.stringify({
+            username: username,
+            password: input,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (data.user) {
+          this.echo("Login successful!");
+          this.echo("Welcome " + data.user + "!");
+          this.echo("Would you like to refresh the page? (y/n)");
+          this.inputMessage = "(y/n)";
+          this.inputAction = (input) => {
+            this.login()["success"](input);
+          };
+          this.showUserInput();
+        }
+
+        if (data.error) {
+          this.echo("Login failed: " + data.error);
+        }
+      },
+
+      success: (input: string) => {
+        if (input === "y") {
+          this.echo("Refreshing page...");
+          window.location.reload();
+        }
+
+        this.clearInputData();
+      },
+    };
   }
 
-  private loginSuccessAction(input) {
-    if (input === "y") {
-      this.refreshPage();
-    }
+  private logout(): object {
+    return {
+      step1: () => {
+        this.echo("Are you sure you want to logout? (y/n)");
+        this.inputMessage = "(y/n)";
+        this.inputAction = (input) => {
+          this.logout()["step2"](input);
+        };
+      },
 
-    this.clearInputData();
+      step2: (input: string) => {
+        if (input === "y") {
+          this.clearInputData();
+          this.echo("Logging out...");
+          this.redirectTo("/logout");
+        } else {
+          this.clearInputData();
+          this.echo("Logout cancelled.");
+        }
+      },
+    };
   }
 
   /**
@@ -357,6 +403,12 @@ export default class Terminal {
   private refreshPage(ms: number = 0) {
     setTimeout(() => {
       window.location.reload();
+    }, ms);
+  }
+
+  private redirectTo(url: string, ms: number = 0) {
+    setTimeout(() => {
+      window.location.href = url;
     }, ms);
   }
 
