@@ -16,6 +16,13 @@ final class NewBlogPostMessageHandler implements MessageHandlerInterface {
     private Security $security;
     private UserRepository $userRepository;
 
+    /**
+     * Constructor.
+     *
+     * @param BlogPostRepository $repository Blog post repository.
+     * @param Security $security Security.
+     * @param UserRepository $userRepository User repository.
+     */
     public function __construct(BlogPostRepository $repository, Security $security, UserRepository $userRepository) {
         $this->postRepository = $repository;
         $this->security = $security;
@@ -25,8 +32,8 @@ final class NewBlogPostMessageHandler implements MessageHandlerInterface {
     /**
      * Create a new blog post.
      *
-     * @param NewBlogPostMessage $message
-     * @return bool Return true if the blog post was created.
+     * @param NewBlogPostMessage $message The message to handle.
+     * @return boolean Return true if the blog post was created.
      * @throws Exception
      */
     public function __invoke(NewBlogPostMessage $message): bool {

@@ -41,5 +41,19 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.5);
+      border: 4px solid #FFFFFF;
+    }
   }
 }

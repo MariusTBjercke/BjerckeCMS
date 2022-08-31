@@ -35,6 +35,15 @@ class BlogPostRepository extends ServiceEntityRepository {
         }
     }
 
+    /**
+     * Flush all changes.
+     *
+     * @return void
+     */
+    public function save() {
+        $this->getEntityManager()->flush();
+    }
+
     //    /**
     //     * @return Post[] Returns an array of Post objects
     //     */

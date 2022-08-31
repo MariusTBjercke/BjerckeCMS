@@ -16,6 +16,7 @@
 @import "~@assets/scss/pages/blog";
 @import "~@assets/scss/pages/login";
 @import "~@assets/scss/pages/register";
+@import "~@assets/scss/pages/profile";
 
 // Components
 @import "~@assets/scss/components/header";
@@ -27,7 +28,8 @@
 @import "~@assets/scss/components/terminal";
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 
 body,
 html {
@@ -37,7 +39,9 @@ html {
   height: 100%;
   color: #000000;
   min-width: 300px;
-  font-family: "Open Sans", sans-serif;
+  //font-family: faricy-new-web, sans-serif;
+  //font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {

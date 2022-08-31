@@ -1,0 +1,41 @@
+{% extends "grid/base.html.twig" %}
+{% set css = "profile" %}
+{% set controller = "profile" %}
+
+{% block title %}{{ app.user.username }}'s {{ 'profile.subtitle'|trans }}{% endblock %}
+
+{% block maincontent %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="profile__header">
+                    <div class="profile__image">
+                        <div class="profile__image-wrapper"
+                             data-profile-target="imageWrapper">{% if image.src is defined and image.src is not null %}
+                                <img
+                                src="{{ image.src }}" alt="Profile image" title="Profile image">{% else %}
+                                <div class="profile__no-image">No profile image.</div>{% endif %}</div>
+                        <div class="profile__image-actions">
+                            <button class="profile__image-btn" data-profile-target="imageUploadButton"><span class="material-icons" title="{{ 'profile.upload'|trans }}">file_upload</span> {{ 'profile.upload'|trans }}
+                            </button>
+                            <button class="profile__image-btn" data-profile-target="imageDeleteButton"><span class="material-icons" title="{{ 'profile.delete'|trans }}">delete</span> {{ 'profile.delete'|trans }}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="profile__info">
+                        <h2>{{ 'profile.title'|trans }}</h2>
+                        <p>{{ 'profile.welcome'|trans({'%username%': app.user.username}) }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {{ include('pages/profile/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

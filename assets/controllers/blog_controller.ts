@@ -3,8 +3,8 @@ import tinymce from "@assets/js/functions/tinymce";
 
 export default class extends Controller {
   static targets = ["title", "content", "newPost", "postsContainer", "form"];
-  private editor: any;
 
+  private editor: any;
   titleTarget: HTMLInputElement;
   contentTarget: any;
   newPostTarget: HTMLDivElement;
@@ -15,10 +15,14 @@ export default class extends Controller {
     this.editor = tinymce.init({
       target: this.contentTarget,
       content_css: "/build/wysiwyg.css",
-      plugins: "advlist code emoticons link lists table",
-      toolbar: "bold italic | bullist numlist | link emoticons",
+      plugins: "advlist image code emoticons link lists table media",
+      toolbar: "bold italic | bullist numlist | link emoticons image media",
       toolbar_mode: "floating",
       width: "100%",
+
+      automatic_uploads: true,
+      images_file_types: "jpg,jpeg,png,gif",
+      images_upload_url: "/blog/upload",
     });
   }
 
@@ -92,9 +96,14 @@ export default class extends Controller {
     if (post.hasAttribute("data-blog-target")) {
       post.removeAttribute("data-blog-target");
     }
+
     post.querySelector(".blog__post-title").innerHTML = result.title;
     post.querySelector(".blog__post-content").innerHTML = result.content;
-    post.querySelector(".blog__post-author").innerHTML = result.author;
+
+    const authorEl = post.querySelector(".blog__post-author");
+    // Get the "posted by" string from the dummy post
+    const langString = authorEl.getAttribute("data-lang");
+    authorEl.innerHTML = langString + " " + result.author;
 
     // Remove the no posts yet message if it exists
     if (noPostsYetMessage) {

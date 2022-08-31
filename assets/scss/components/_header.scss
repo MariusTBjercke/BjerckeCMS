@@ -32,7 +32,7 @@ nav {
   .top-bar {
     width: 100%;
     background: linear-gradient(0deg, var.$bjercke-orange, var.$bjercke-orange-darker);
-    height: 30px;
+    height: 35px;
     display: flex;
     align-items: center;
 
@@ -67,7 +67,7 @@ nav {
       justify-content: flex-end;
 
       &__item {
-        padding: 1.2em 1.5em;
+        padding: 1.3em 1.5em;
         border-left: 1px solid $border-color;
         text-decoration: none;
         color: #cccccc;

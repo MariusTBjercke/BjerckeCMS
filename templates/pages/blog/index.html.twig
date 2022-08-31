@@ -13,30 +13,14 @@
 
         <div class="row">
             <div class="col">
+                <h2>{{ 'blog.latest'|trans }}</h2>
                 <div class="blog__posts" data-blog-target="postsContainer">
                     {% if posts is not empty %}
                         {% for post in posts %}
-                            <div class="blog__post">
-                                <div class="blog__post-title">
-                                    {{ post.title }}
-                                </div>
-                                <div class="blog__post-content">
-                                    {{ post.content|raw }}
-                                </div>
-                                <div class="blog__post-author">
-                                    {{ post.author }}
-                                </div>
-                            </div>
+                            {% include "pages/blog/_post.html.twig" %}
                         {% endfor %}
                     {% elseif posts is empty %}
-                        <div class="blog__post blog__post_hidden">
-                            <div class="blog__post-title">
-                            </div>
-                            <div class="blog__post-content">
-                            </div>
-                            <div class="blog__post-author">
-                            </div>
-                        </div>
+                        {% include "pages/blog/_post.html.twig" %}
                         <div class="blog__no-posts-yet">
                             <p>No posts yet.</p>
                         </div>
@@ -48,7 +32,7 @@
         <div class="row">
             <div class="col">
                 {% if app.user is not null %}
-                    <button class="btn" data-action="click->blog#newPost">Create new blog post</button>
+                    <button class="btn" data-action="click->blog#newPost">{{ 'blog.new-post'|trans }}</button>
                 {% endif %}
             </div>
         </div>

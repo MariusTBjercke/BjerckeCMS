@@ -6,6 +6,11 @@ use App\Entity\User;
 use App\EventListener\WelcomeEmail;
 
 return static function (ContainerConfigurator $configurator) {
+    // Compile the entire container into a single file
+    $configurator->parameters()->set('container.dumper.inline_factories', true);
+
+    $configurator->parameters()->set('images_directory', '/uploads/images');
+
     $services = $configurator->services();
 
     $services

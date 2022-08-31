@@ -3,11 +3,17 @@
 namespace App\Controller\Blog;
 
 use App\CQRS\Query\BlogPostsQuery;
+use App\Entity\Blog\Post;
 use App\Form\Type\Blog\BlogPostType;
+use App\Form\Type\Blog\ImageType;
+use App\Form\Type\Profile\ProfileImageUploadType;
 use App\Message\NewBlogPostMessage;
+use App\Repository\BlogPostRepository;
 use App\Request\NewBlogPostRequest;
 use App\Shared\AjaxFormErrorHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -15,6 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/blog")
@@ -31,7 +38,7 @@ class BlogController extends AbstractController {
     /**
      * @Route("/", name="blog_index", methods={"GET"})
      */
-    public function index(BlogPostsQuery $blogPostsQuery): Response {
+    public function index(BlogPostsQuery $blogPostsQuery, BlogPostRepository $postRepository): Response {
         $posts = $blogPostsQuery();
 
         $newBlogPostRequest = new NewBlogPostRequest();
@@ -54,8 +61,6 @@ class BlogController extends AbstractController {
         if (!$request->isXmlHttpRequest()) {
             return new JsonResponse(['serverError' => 'Not an AJAX request.'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-
-        dump($this->getUser());
 
         if ($this->getUser() === null) {
             return new JsonResponse(
@@ -95,6 +100,7 @@ class BlogController extends AbstractController {
                         'title' => $newBlogPostRequest->title,
                         'content' => $newBlogPostRequest->content,
                         'author' => $this->getUser()->getUsername(),
+                        'date' => new \DateTime('now'),
                     ]
                     : [
                         'errors' => $errors ?? [],
@@ -102,5 +108,49 @@ class BlogController extends AbstractController {
             ],
             Response::HTTP_CREATED,
         );
+    }
+
+    /**
+     * TinyMCE image upload.
+     *
+     * @Route("/upload", name="blog_upload", methods={"POST"})
+     * @param Request $request Request.
+     * @param SluggerInterface $slugger Slugger.
+     * @return JsonResponse
+     */
+    public function upload(Request $request, SluggerInterface $slugger): Response {
+        $file = $request->files->get('file');
+
+        if ($file instanceof UploadedFile) {
+            if ($file->getError() !== UPLOAD_ERR_OK) {
+                return new JsonResponse(['error' => $file->getErrorMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+
+            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename . '-' . uniqid('', true) . '.' . $file->guessExtension();
+
+            try {
+                $file->move(
+                    $this->getParameter('kernel.project_dir') . '/public' . $this->getParameter('images_directory'),
+                    $newFilename,
+                );
+            } catch (FileException $e) {
+                return new JsonResponse(
+                    [
+                        'error' => 'An exception occurred while trying to upload the file.',
+                        'exception' => $e->getMessage(),
+                    ],
+                    Response::HTTP_INTERNAL_SERVER_ERROR,
+                );
+            }
+
+            return new JsonResponse(
+                ['location' => $this->getParameter('images_directory') . '/' . $newFilename],
+                Response::HTTP_CREATED,
+            );
+        }
+
+        return new JsonResponse(['error' => 'No file uploaded.'], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }

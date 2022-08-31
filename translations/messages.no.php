@@ -9,11 +9,21 @@ return [
         'logout' => 'Logg ut',
     ],
 
+    'footer' => [
+        'contact' => [
+            'title' => 'Kontakt',
+            'email' => 'Epost',
+            'phone' => 'Telefon',
+        ],
+    ],
+
     'blog' => [
         'title' => 'Blogg',
         'welcome' => 'Velkommen til bloggen.',
         'latest' => 'Siste artikler',
         'no_posts' => 'Ingen artikler enda.',
+        'author' => 'Skrevet av',
+        'new-post' => 'Nytt innlegg',
         'new_post' => [
             'new' => 'Ny post',
             'title' => 'Tittel',
@@ -38,6 +48,21 @@ return [
             'new' => 'Ny tråd',
             'title' => 'Tittel',
             'submit' => 'Send',
+            'close' => 'Lukk',
+        ],
+    ],
+
+    'profile' => [
+        'title' => 'Profil',
+        'subtitle' => 'profil',
+        'welcome' => 'Velkommen til din profil, %username%.',
+        'upload' => 'Last opp',
+        'delete' => 'Slett',
+        'form' => [
+            'label' => 'Bilde (JPG, PNG, GIF)',
+            'title' => 'Last opp et profilbilde',
+            'content' => 'Innhold',
+            'submit' => 'Last opp',
             'close' => 'Lukk',
         ],
     ],

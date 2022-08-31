@@ -1,4 +1,5 @@
 import cr from "@assets/js/functions/cr";
+import Modal from "@assets/js/interfaces/Modal";
 
 export default class Terminal {
   keys: string[] = [];
@@ -9,6 +10,7 @@ export default class Terminal {
   commandLog: string[] = [];
   commandLogCount = 1;
   element: HTMLDivElement;
+  modal: Modal;
   body: HTMLDivElement;
   input: HTMLDivElement;
   inputMessage: string = "";
@@ -31,27 +33,60 @@ export default class Terminal {
     this.input = element.querySelector(".terminal__input");
     this.text = element.querySelector(".terminal__text");
     this.username = element.querySelector(".terminal__username");
+    this.createModalElement();
     this.setInputFilters();
     this.setSpecialKeys();
     this.createCursor();
+    this.modalListener();
+    this.setWelcomeMessages();
   }
 
+  /**
+   * Set welcome messages.
+   *
+   * @private
+   */
+  private setWelcomeMessages() {
+    this.echo("My name is Marius and I'm an up-and-coming-developer.");
+    this.echo("Feel free to explore my website and learn more about me.");
+    this.echo("Type 'help' to see a list of commands.");
+  }
+
+  /**
+   * Set input filters.
+   *
+   * @private
+   */
   private setInputFilters() {
     this.inputFilters = {
       Asterisk: 0,
     };
   }
 
+  /**
+   * Run the terminal.
+   *
+   */
   public run() {
     this.setTextDivHeight();
     this.showUserInput();
     this.getUserInput();
   }
 
+  /**
+   * Create the "fake" cursor.
+   *
+   * @private
+   */
   private createCursor() {
     this.cursorElement = cr("span", { class: "terminal__text_cursor" });
   }
 
+  /**
+   * Display the user input.
+   *
+   * @private
+   */
   private showUserInput() {
     this.text.innerHTML = "";
     this.text.appendChild(this.username);
@@ -108,6 +143,9 @@ export default class Terminal {
             this.keys = [];
             this.previewKeys = [];
             this.showUserInput();
+            break;
+          case "k":
+            this.clearHistory();
             break;
         }
 
@@ -196,7 +234,7 @@ export default class Terminal {
 
   private executeCommand(command: string) {
     const commands = this.commands();
-    const formattedCommand = command.replace(/&nbsp;/g, " ");
+    const formattedCommand = command.replace(/&nbsp;/g, " ").trim();
 
     if (this.inputAction !== null) {
       this.inputAction(formattedCommand);
@@ -245,6 +283,10 @@ export default class Terminal {
       refresh: () => {
         this.echo("Refreshing...");
         this.refreshPage();
+      },
+
+      about: () => {
+        this.about();
       },
     };
   }
@@ -424,5 +466,79 @@ export default class Terminal {
     this.inputStrings = [];
 
     this.showUserInput();
+  }
+
+  /**
+   * Create the modal element.
+   *
+   * @private
+   */
+  private createModalElement() {
+    this.modal = {
+      element: cr("div", { class: "terminal-modal" }),
+      content: {
+        element: cr("div", { class: "terminal-modal__content" }),
+        header: cr("div", { class: "terminal-modal__header" }),
+        body: cr("div", { class: "terminal-modal__body" }),
+        footer: cr("div", { class: "terminal-modal__footer" }),
+      },
+    };
+
+    this.modal.content.element.appendChild(this.modal.content.header);
+    this.modal.content.element.appendChild(this.modal.content.body);
+    this.modal.content.element.appendChild(this.modal.content.footer);
+
+    this.modal.element.appendChild(this.modal.content.element);
+
+    const siteBody = document.querySelector("body");
+    if (siteBody) {
+      siteBody.prepend(this.modal.element);
+    }
+
+    this.setModalContent();
+  }
+
+  /**
+   * Modal related events.
+   *
+   * @private
+   */
+  private modalListener() {
+    const openModalBtn = this.element.querySelector(".terminal__open-modal span");
+    const closeModalBtn = this.modal.content.element.querySelector(".terminal-modal__close");
+
+    openModalBtn.addEventListener("click", () => {
+      this.modal.element.classList.add("terminal-modal_open");
+    });
+
+    closeModalBtn.addEventListener("click", () => {
+      this.modal.element.classList.remove("terminal-modal_open");
+    });
+  }
+
+  private setModalContent() {
+    const modalClose = cr("div", { class: "terminal-modal__close" });
+    modalClose.innerHTML = '<span class="material-icons-outlined">close</span>';
+    this.modal.content.element.appendChild(modalClose);
+
+    // this.modal.content.header.innerHTML = "<h1>Modal</h1>";
+  }
+
+  private getAge(birthday: string) {
+    const ageDifMs = Date.now() - new Date(birthday).getTime();
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  private about() {
+    this.echo("Name: Marius Toresen Bjercke");
+    this.echo("Age: " + this.calculateAge("1994-01-16"));
+    this.echo("Occupation: Developer in practice");
+  }
+
+  private calculateAge(birthday: string) {
+    const ageDifMs = Date.now() - new Date(birthday).getTime();
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 }

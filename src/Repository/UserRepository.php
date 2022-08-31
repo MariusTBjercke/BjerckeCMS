@@ -59,6 +59,10 @@ class UserRepository extends ServiceEntityRepository {
         return $this->findOneBy(['email' => $email]);
     }
 
+    public function save(): void {
+        $this->getEntityManager()->flush();
+    }
+
     //    /**
     //     * @return User[] Returns an array of User objects
     //     */

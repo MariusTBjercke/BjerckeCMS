@@ -1,13 +1,15 @@
 <div class="terminal" data-controller="terminal">
     <div class="terminal__header">
         <div class="terminal__title">
-            <h1>Terminal</h1>
+            <h1>Shell</h1>
+        </div>
+        <div class="terminal__open-modal">
+            <span class="material-icons" title="Open modal">open_in_new</span>
         </div>
     </div>
     <div class="terminal__body">
         <div class="terminal__log">
-            <div class="terminal__log_line">Last login: {{ component.date }} on {{ component.browser }}</div>
-            <div class="terminal__log_line">Type help for commands.</div>
+{#            <div class="terminal__log_line">Last login: {{ component.date }} on {{ component.browser }}</div>#}
             <div class="terminal__log_history"></div>
         </div>
         <div class="terminal__input">

@@ -9,11 +9,21 @@ return [
         'logout' => 'Logout',
     ],
 
+    'footer' => [
+        'contact' => [
+            'title' => 'Contact',
+            'email' => 'Email',
+            'phone' => 'Phone',
+        ],
+    ],
+
     'blog' => [
         'title' => 'Blog',
         'welcome' => 'Welcome to my blog.',
-        'latest' => 'Latest articles',
+        'latest' => 'Latest posts',
         'no_posts' => 'No articles yet.',
+        'author' => 'Posted by',
+        'new-post' => 'New post',
         'new_post' => [
             'new' => 'New post',
             'title' => 'Title',
@@ -38,6 +48,21 @@ return [
             'new' => 'New post',
             'title' => 'Title',
             'submit' => 'Submit',
+            'close' => 'Close',
+        ],
+    ],
+
+    'profile' => [
+        'title' => 'Profile',
+        'subtitle' => 'profile',
+        'welcome' => 'Welcome to your profile, %username%.',
+        'upload' => 'Upload',
+        'delete' => 'Delete',
+        'form' => [
+            'label' => 'Image (JPG, PNG, GIF)',
+            'title' => 'Upload a profile image',
+            'content' => 'Content',
+            'submit' => 'Upload',
             'close' => 'Close',
         ],
     ],

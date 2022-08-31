@@ -10,31 +10,50 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Table;
 
 /**
+ * Blog post entity.
+ *
  * @ORM\Entity(repositoryClass=BlogPostRepository::class)
  * @Table(name="blog_posts")
  */
 class Post extends AbstractEntity {
     /**
+     * Post title.
+     *
      * @ORM\Column(type="string", length=255)
      */
     private ?string $title;
 
     /**
+     * Post content.
+     *
      * @ORM\Column(type="text")
      */
     private ?string $content;
 
     /**
+     * Is blog post published?
+     *
      * @ORM\Column(type="boolean")
      */
     private bool $published;
 
     /**
+     * Post published date.
+     *
      * @ORM\Column(type="datetime")
      */
     private ?DateTimeInterface $publishedAt;
 
     /**
+     * Current state of the post.
+     *
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private array $currentPlace = [];
+
+    /**
+     * Post author.
+     *
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="blogPosts")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -88,5 +107,20 @@ class Post extends AbstractEntity {
         $this->author = $author;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCurrentPlace(): array {
+        return $this->currentPlace;
+    }
+
+    /**
+     * @param array $currentPlace
+     * @param array $context
+     */
+    public function setCurrentPlace(array $currentPlace, array $context = []): void {
+        $this->currentPlace = $currentPlace;
     }
 }

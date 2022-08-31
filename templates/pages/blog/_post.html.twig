@@ -1,0 +1,12 @@
+<div class="blog__post{% if post is not defined %} blog__post_hidden{% endif %}">
+    <div class="blog__post-title">
+        {% if post is defined %}{{ post.title }}{% endif %}
+    </div>
+    <div class="blog__post-content">
+        {% if post is defined %}{{ post.content|raw }}{% endif %}
+    </div>
+    <div class="blog__post-author" data-lang="{{ 'blog.author'|trans }}">
+        {% if post is defined %}{{ 'blog.author'|trans }} {{ post.author }}{% endif %}
+    </div>
+    <div class="blog__post-date">{% if post is defined %}{{ post.publishedAt }}{% endif %}</div>
+</div>

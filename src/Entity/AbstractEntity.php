@@ -7,10 +7,10 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\MappedSuperclass()
  * @ORM\HasLifecycleCallbacks()
  */
-abstract class AbstractEntity
-{
+abstract class AbstractEntity {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -31,16 +31,14 @@ abstract class AbstractEntity
     /**
      * @ORM\PrePersist()
      */
-    public function onPrePersist(): void
-    {
+    public function onPrePersist(): void {
         $this->createdAt = new DateTime();
     }
 
     /**
-     * @ORM\PreUpdate()
+     * @ORM\PreFlush()
      */
-    public function onPreUpdate(): void
-    {
+    public function onPreFlush(): void {
         $this->updatedAt = new DateTime();
     }
 
@@ -51,32 +49,28 @@ abstract class AbstractEntity
     /**
      * @return DateTimeInterface|null
      */
-    public function getCreatedAt(): ?DateTimeInterface
-    {
+    public function getCreatedAt(): ?DateTimeInterface {
         return $this->createdAt;
     }
 
     /**
      * @param DateTimeInterface|null $createdAt
      */
-    public function setCreatedAt(?DateTimeInterface $createdAt): void
-    {
+    public function setCreatedAt(?DateTimeInterface $createdAt): void {
         $this->createdAt = $createdAt;
     }
 
     /**
      * @return DateTimeInterface|null
      */
-    public function getUpdatedAt(): ?DateTimeInterface
-    {
+    public function getUpdatedAt(): ?DateTimeInterface {
         return $this->updatedAt;
     }
 
     /**
      * @param DateTimeInterface|null $updatedAt
      */
-    public function setUpdatedAt(?DateTimeInterface $updatedAt): void
-    {
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): void {
         $this->updatedAt = $updatedAt;
     }
 }

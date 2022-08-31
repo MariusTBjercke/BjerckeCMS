@@ -30,7 +30,7 @@
                                     class="material-icons">language</span> {{ language_code.getOppositeLocale|upper }}
                             </a>
                             {% if app.user %}
-                                <a href="{{ path('homepage') }}">{{ app.user.username }}<span class="material-icons">account_circle</span></a>
+                                <a href="{{ path('profile_index') }}">{{ app.user.username }}<span class="material-icons">account_circle</span></a>
                             {% endif %}
                         </div>
                     </div>

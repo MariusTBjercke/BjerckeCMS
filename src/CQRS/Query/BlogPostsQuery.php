@@ -26,7 +26,7 @@ class BlogPostsQuery {
                 b.title,
                 b.content,
                 a.username,
-                b.createdAt
+                b.publishedAt
             )
         EOD;
 
@@ -34,7 +34,7 @@ class BlogPostsQuery {
             ->select($select)
             ->from(Post::class, 'b')
             ->join('b.author', 'a')
-            ->orderBy('b.createdAt', 'DESC');
+            ->orderBy('b.publishedAt', 'DESC');
 
         return $query->getQuery()->getResult();
     }

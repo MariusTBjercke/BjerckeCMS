@@ -62,7 +62,6 @@
 
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
 
-    <rule ref="Squiz.Commenting.ClassComment" />
-
+<!--    <rule ref="Squiz.Commenting.ClassComment" />-->
 
 </ruleset>
