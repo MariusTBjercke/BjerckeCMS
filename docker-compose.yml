@@ -8,8 +8,6 @@ services:
     container_name: webserver
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    depends_on:
-      - db
     environment:
       TZ: "Europe/Amsterdam"
     volumes:

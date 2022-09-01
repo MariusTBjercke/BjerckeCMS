@@ -1,6 +1,6 @@
 FROM php:8.1-apache
 COPY ./vhost/* /etc/apache2/sites-available/
-RUN apt update && apt upgrade -y && apt install nano -y \
+RUN apt update && apt upgrade -y && apt install nano libicu-dev icu-devtools -y \
 && a2enmod rewrite && apt install libmagickwand-dev libmagickcore-dev -y \
 && docker-php-ext-install mysqli pdo_mysql fileinfo \
 && pecl install imagick && docker-php-ext-enable imagick \
