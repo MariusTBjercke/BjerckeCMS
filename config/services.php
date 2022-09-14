@@ -11,6 +11,8 @@ return static function (ContainerConfigurator $configurator) {
 
     $configurator->parameters()->set('images_directory', '/uploads/images');
 
+    $configurator->parameters()->set('relative_images_directory', '%kernel.project_dir%/public%images_directory%');
+
     $services = $configurator->services();
 
     $services

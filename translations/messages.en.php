@@ -87,4 +87,6 @@ return [
     'Submit' => 'Submit',
     'Close' => 'Close',
     'Register' => 'Register',
+
+    'in development' => 'This page is currently under development.',
 ];

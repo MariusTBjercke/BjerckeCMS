@@ -33,22 +33,4 @@ class HomeController extends AbstractController {
             'terminal' => $terminal,
         ]);
     }
-
-    /**
-     * TODO: Remove this later on. This is just a test file for checking out workflows.
-     *
-     * @Route("/test", name="test")
-     */
-    public function test(BlogPostRepository $blogPostRepository): Response {
-        $post = $blogPostRepository->findAll()[0];
-        $stateMachine = $this->workflows->get($post, 'blog_post');
-
-        $stateMachine->apply($post, 'review_publish', [
-            'log_comment' => 'Reviewed',
-        ]);
-
-        return new Response('<h1>Test</h1> ' . print_r($post->getCurrentPlace()), Response::HTTP_OK, [
-            'Content-Type' => 'text/html',
-        ]);
-    }
 }

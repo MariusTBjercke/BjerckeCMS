@@ -14,4 +14,7 @@ return static function (FrameworkConfig $framework) {
         ->storageFactoryId('session.storage.factory.native');
 
     $framework->phpErrors()->log(true);
+
+    // Path for Macbook Pro
+    $framework->ide('phpstorm://open?file=%%f&line=%%l&/var/www/html/>/Users/marius/public_html/devel/BjerckeCMS/');
 };

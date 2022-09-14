@@ -24,7 +24,7 @@ class ProfileImageUploadType extends AbstractType {
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2M',
+                        'maxSize' => '10M',
                         'mimeTypes' => ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'],
                         'mimeTypesMessage' => 'Please upload a valid image (JPG, PNG, GIF).',
                     ]),

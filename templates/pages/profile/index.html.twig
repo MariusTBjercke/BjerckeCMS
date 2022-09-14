@@ -12,9 +12,9 @@
                 <div class="profile__header">
                     <div class="profile__image">
                         <div class="profile__image-wrapper"
-                             data-profile-target="imageWrapper">{% if image.src is defined and image.src is not null %}
+                             data-profile-target="imageWrapper">{% if profile_image.src is defined and profile_image.src is not null %}
                                 <img
-                                src="{{ image.src }}" alt="Profile image" title="Profile image">{% else %}
+                                src="{{ profile_image.src }}" alt="Profile image" title="Profile image">{% else %}
                                 <div class="profile__no-image">No profile image.</div>{% endif %}</div>
                         <div class="profile__image-actions">
                             <button class="profile__image-btn" data-profile-target="imageUploadButton"><span class="material-icons" title="{{ 'profile.upload'|trans }}">file_upload</span> {{ 'profile.upload'|trans }}

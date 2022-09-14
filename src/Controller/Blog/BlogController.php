@@ -55,7 +55,11 @@ class BlogController extends AbstractController {
     }
 
     /**
+     * New blog post.
+     *
      * @Route("/post/new", name="blog_post_new", methods={"POST"})
+     * @param Request $request Request.
+     * @return JsonResponse
      */
     public function newPost(Request $request): JsonResponse {
         if (!$request->isXmlHttpRequest()) {

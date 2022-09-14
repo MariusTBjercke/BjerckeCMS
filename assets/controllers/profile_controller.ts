@@ -51,6 +51,7 @@ export default class extends Controller {
       let img: HTMLImageElement = this.imageWrapperTarget.querySelector("img");
 
       if (img === null) {
+        this.imageWrapperTarget.innerHTML = "";
         img = document.createElement("img");
         this.imageWrapperTarget.appendChild(img);
       }

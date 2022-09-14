@@ -4,20 +4,21 @@ DOMReady(() => {
   const element = document.querySelector("nav");
 
   if (element) {
-    const topLogo = element.querySelector(".top-logo");
+    const logo: HTMLDivElement = element.querySelector(".top-logo");
+    const wrapper: HTMLDivElement = element.querySelector(".navigation-wrapper");
+    const burgerBtn: HTMLDivElement = wrapper.querySelector(".navigation-wrapper__bars");
+    const navigation: HTMLDivElement = element.querySelector(".collapsed-navigation");
+    const buttons = [burgerBtn];
+
+    // Adjust the navigation position on page load
+    navigation.style.top = `${wrapper.clientHeight}px`;
 
     // Go to home page on logo click.
-    topLogo.addEventListener("click", () => {
+    logo.addEventListener("click", () => {
       const href = window.location.href;
       // window.location.href = href.substring(0, href.lastIndexOf('/'));
       window.location.href = "/";
     });
-
-    // Mobile navigation dropdown
-    const burgerBtn = element.querySelector(".navigation-wrapper__bars");
-    const closeBtn = element.querySelector(".collapsed-navigation__close");
-    const navigation = element.querySelector(".collapsed-navigation");
-    const buttons = [burgerBtn, closeBtn];
 
     // Get session storage value and toggle if true
     const navSessionStorage = sessionStorage.getItem("navigation");

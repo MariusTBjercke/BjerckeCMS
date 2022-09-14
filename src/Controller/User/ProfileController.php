@@ -5,15 +5,13 @@ namespace App\Controller\User;
 use App\Entity\User;
 use App\Form\Type\Profile\ProfileImageUploadType;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\Image\ImageOptimizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -23,18 +21,15 @@ use Symfony\Component\String\Slugger\SluggerInterface;
  * @Route("/profile")
  */
 class ProfileController extends AbstractController {
-    private MessageBusInterface $bus;
-    private RequestStack $requestStack;
+    private ImageOptimizer $imageOptimizer;
 
     /**
      * Construct.
      *
-     * @param MessageBusInterface $bus Message bus.
-     * @param RequestStack $requestStack Request stack.
+     * @param ImageOptimizer $imageOptimizer Image optimizer.
      */
-    public function __construct(MessageBusInterface $bus, RequestStack $requestStack) {
-        $this->bus = $bus;
-        $this->requestStack = $requestStack;
+    public function __construct(ImageOptimizer $imageOptimizer) {
+        $this->imageOptimizer = $imageOptimizer;
     }
 
     /**
@@ -45,10 +40,13 @@ class ProfileController extends AbstractController {
     public function index(): Response {
         $user = $this->getUser();
 
-        if ($user instanceof User) {
-            $image = $user->getProfileImage();
-            $imageSrc = $image !== '' ? $this->getParameter('images_directory') . '/' . $image : null;
+        if (!$user instanceof User) {
+            return $this->redirectToRoute('homepage');
         }
+
+        $image = $user->getProfileImage();
+        $imageSrc =
+            $image !== null && trim($image) !== '' ? $this->getParameter('images_directory') . '/' . $image : null;
 
         $form = $this->createForm(ProfileImageUploadType::class, null, [
             'attr' => [
@@ -59,8 +57,8 @@ class ProfileController extends AbstractController {
 
         return $this->render('pages/profile/index.html.twig', [
             'form' => $form->createView(),
-            'image' => [
-                'src' => $imageSrc ?? null,
+            'profile_image' => [
+                'src' => $imageSrc,
             ],
         ]);
     }

@@ -19,6 +19,8 @@ services:
       - ./docker/php/tmp/xdebug:/tmp/xdebug
       - ./docker/log/apache2:/var/log/apache2
       - ./docker/.bashrc:/root/.bashrc
+      - ./docker/php/ssl:/etc/letsencrypt
+      - ./docker/php/vhost:/etc/apache2/sites-available
     ports:
       - "80:80"
       - "443:443"
@@ -33,10 +35,10 @@ services:
       - db:/var/lib/mysql
       - ./docker/.bashrc:/root/.bashrc
     environment:
-      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "20C71900a920C"
       MYSQL_DATABASE: "bjerckecms"
       MYSQL_USER: "bjerckecms"
-      MYSQL_PASSWORD: "bjerckecms"
+      MYSQL_PASSWORD: "20C71900a920C"
       TZ: "Europe/Amsterdam"
     ports:
       - "3306:3306"
@@ -47,9 +49,9 @@ services:
     restart: always
     ports:
       - "8080:80"
-    environment:
-      PMA_USER: "root"
-      PMA_PASSWORD: "root"
+#    environment:
+#      PMA_USER: "root"
+#      PMA_PASSWORD: "root"
 
 #  cron:
 #    build:

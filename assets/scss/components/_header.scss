@@ -67,6 +67,9 @@ nav {
       justify-content: flex-end;
 
       &__item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
         padding: 1.3em 1.5em;
         border-left: 1px solid $border-color;
         text-decoration: none;
@@ -114,42 +117,38 @@ nav {
   }
 
   .collapsed-navigation {
-    background: #2b2b2b;
+    background: rgba(0, 0, 0, 0.9);
     position: absolute;
-    right: 0;
-    top: 0;
     visibility: hidden;
+    top: 0;
     opacity: 0;
-    min-width: 200px;
-    height: 100%;
-    border-left: 2px solid $border-color;
+    width: 100%;
     z-index: 999;
-    transform: translateX(100%);
     transition: all .25s;
 
     &_open {
       visibility: visible;
       opacity: 1;
-      transform: translateX(0);
     }
 
     &__content {
       position: relative;
-      margin: 1em;
     }
 
     &__menu-items {
       display: flex;
-      gap: 0.5em;
       flex-direction: column;
-      padding: 2.5em 0.25em;
     }
 
     &__item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
       text-decoration: none;
       border-bottom: 1px solid #ffffff;
-      padding: 0.5em 0;
+      padding: 1em;
       color: #ffffff;
+      font-size: 1.1em;
 
       &_active {
         color: var.$bjercke-orange;

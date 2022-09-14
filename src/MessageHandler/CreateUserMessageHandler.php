@@ -34,7 +34,6 @@ final class CreateUserMessageHandler implements MessageHandlerInterface {
      * @return string|bool Return a string to indicate a failure or true to indicate success.
      */
     public function __invoke(CreateUserMessage $message): string|bool {
-        // Create user
         $user = (new User())
             ->setUsername($message->getUsername())
             ->setFirstname($message->getFirstname())
@@ -45,7 +44,6 @@ final class CreateUserMessageHandler implements MessageHandlerInterface {
 
         $plainTextPassword = $message->getPassword();
 
-        // Hash the password
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainTextPassword);
 
         $user->setPassword($hashedPassword);

@@ -25,15 +25,13 @@ class WelcomeEmail {
         }
 
         // Send email to user
-        //        $email = (new Email())
-        //            ->from(new Address('kontakt@bjerckemedia.no', 'Bjercke Media'))
-        //            ->to($entity->getEmail())
-        //            ->subject('Velkommen til Bjercke Media!')
-        //            ->text('Dette er en velkomstmelding.')
-        //            ->html('<p>Velkommen til denne siden!</p>');
+        $email = (new Email())
+            ->from(new Address('kontakt@bjerckemedia.no', 'Bjercke Media'))
+            ->to($entity->getEmail())
+            ->subject('Velkommen til Bjercke Media!')
+            ->text('Dette er en velkomstmelding.')
+            ->html('<p>Velkommen til denne siden!</p>');
 
-        // Uncomment below to send email
-
-        //        $this->mailer->send($email);
+        $this->mailer->send($email);
     }
 }

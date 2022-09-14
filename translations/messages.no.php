@@ -87,4 +87,6 @@ return [
     'Submit' => 'Send',
     'Close' => 'Lukk',
     'Register' => 'Registrer',
+
+    'in development' => 'Denne siden er for øyeblikket under utvikling.',
 ];
