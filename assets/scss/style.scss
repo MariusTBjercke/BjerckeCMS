@@ -26,6 +26,7 @@
 @import "~@assets/scss/shared";
 @import "~@assets/scss/components/billboard";
 @import "~@assets/scss/components/terminal";
+@import "~@assets/scss/components/smartphone";
 
 // Fonts
 //@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
@@ -39,8 +40,6 @@ html {
   height: 100%;
   color: #000000;
   min-width: 300px;
-  //font-family: faricy-new-web, sans-serif;
-  //font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   font-family: 'Roboto', sans-serif;
 }
 

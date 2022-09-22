@@ -8,7 +8,7 @@ class TerminalController extends AbstractComponent {
     public string $browser;
 
     public function __construct() {
-        $this->template = 'components/terminal.html.twig';
+        $this->template = 'components/_terminal.html.twig';
         $this->date = date('D M j H:i:s');
         $this->browser = $this->getBrowser();
     }

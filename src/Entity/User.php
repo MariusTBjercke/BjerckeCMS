@@ -16,16 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields={"email"}, message="This email is taken.", groups="registration")
  * @UniqueEntity(fields={"username"}, message="This username is taken.", groups="registration")
  */
-class User implements UserInterface, PasswordAuthenticatedUserInterface {
-    /**
-     * Id.
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
+class User extends AbstractEntity implements UserInterface, PasswordAuthenticatedUserInterface {
     /**
      * Username
      *

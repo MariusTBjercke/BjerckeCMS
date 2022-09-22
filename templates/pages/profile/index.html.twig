@@ -19,8 +19,8 @@
                         <div class="profile__image-actions">
                             <button class="profile__image-btn" data-profile-target="imageUploadButton"><span class="material-icons" title="{{ 'profile.upload'|trans }}">file_upload</span> {{ 'profile.upload'|trans }}
                             </button>
-                            <button class="profile__image-btn" data-profile-target="imageDeleteButton"><span class="material-icons" title="{{ 'profile.delete'|trans }}">delete</span> {{ 'profile.delete'|trans }}
-                            </button>
+                            <a href="{{ path('profile_remove_picture') }}"><button class="profile__image-btn" data-profile-target="imageDeleteButton"><span class="material-icons" title="{{ 'profile.remove'|trans }}">delete</span> {{ 'profile.remove'|trans }}
+                                </button></a>
                         </div>
                     </div>
                     <div class="profile__info">

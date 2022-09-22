@@ -1,0 +1,26 @@
+.smartphone {
+  display: flex;
+  position: relative;
+
+  &__wrapper {
+    display: flex;
+    position: relative;
+  }
+
+  &__case {
+    display: flex;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: rgb(0, 0, 0);
+    clip-path: polygon(0% 20%, 40% 2%, 77.33% 73.33%, 38% 92%);
+  }
+
+  &__screen {
+    width: 100px;
+    height: 100px;
+    background: rgb(182, 182, 182);
+    clip-path: polygon(0% 20%, 40% 2%, 77.33% 73.33%, 38% 92%);
+  }
+
+}

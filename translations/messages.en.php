@@ -57,7 +57,7 @@ return [
         'subtitle' => 'profile',
         'welcome' => 'Welcome to your profile, %username%.',
         'upload' => 'Upload',
-        'delete' => 'Delete',
+        'remove' => 'Remove',
         'form' => [
             'label' => 'Image (JPG, PNG, GIF)',
             'title' => 'Upload a profile image',

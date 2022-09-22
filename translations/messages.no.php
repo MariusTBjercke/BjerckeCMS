@@ -57,7 +57,7 @@ return [
         'subtitle' => 'profil',
         'welcome' => 'Velkommen til din profil, %username%.',
         'upload' => 'Last opp',
-        'delete' => 'Slett',
+        'remove' => 'Fjern',
         'form' => [
             'label' => 'Bilde (JPG, PNG, GIF)',
             'title' => 'Last opp et profilbilde',

@@ -6,10 +6,12 @@ use App\Entity\User;
 use App\Form\Type\Profile\ProfileImageUploadType;
 use App\Repository\UserRepository;
 use App\Service\Image\ImageOptimizer;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,14 +24,16 @@ use Symfony\Component\String\Slugger\SluggerInterface;
  */
 class ProfileController extends AbstractController {
     private ImageOptimizer $imageOptimizer;
+    private UserRepository $userRepository;
 
     /**
      * Construct.
      *
      * @param ImageOptimizer $imageOptimizer Image optimizer.
      */
-    public function __construct(ImageOptimizer $imageOptimizer) {
+    public function __construct(ImageOptimizer $imageOptimizer, UserRepository $userRepository) {
         $this->imageOptimizer = $imageOptimizer;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -71,7 +75,7 @@ class ProfileController extends AbstractController {
      * @param SluggerInterface $slugger Slugger.
      * @return JsonResponse
      */
-    public function upload(Request $request, SluggerInterface $slugger, UserRepository $userRepository): JsonResponse {
+    public function upload(Request $request, SluggerInterface $slugger): JsonResponse {
         $form = $this->createForm(ProfileImageUploadType::class);
         $form->handleRequest($request);
 
@@ -107,9 +111,9 @@ class ProfileController extends AbstractController {
                 }
 
                 // Update user profile image.
-                $user = $userRepository->findByIdOrThrow($this->getUser()->getId());
+                $user = $this->userRepository->findByIdOrThrow($this->getUser()->getId());
                 $user->setProfileImage($newFilename);
-                $userRepository->save();
+                $this->userRepository->save();
 
                 return new JsonResponse(
                     [
@@ -124,5 +128,27 @@ class ProfileController extends AbstractController {
         }
 
         return new JsonResponse(['success' => false], Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * Delete/unset profile picture.
+     *
+     * @Route("/remove", name="profile_remove_picture", methods={"GET"})
+     * @param Request $request Request.
+     * @throws Exception
+     */
+    public function removeProfilePicture(Request $request): RedirectResponse {
+        $user = $this->getUser();
+
+        if (!$user instanceof User) {
+            return $this->redirectToRoute("homepage");
+        }
+
+        // Remove user profile image.
+        $user = $this->userRepository->findByIdOrThrow($this->getUser()->getId());
+        $user->setProfileImage(null);
+        $this->userRepository->save();
+
+        return $this->redirectToRoute("profile_index");
     }
 }

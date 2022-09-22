@@ -3,14 +3,12 @@
 namespace App\Controller\Blog;
 
 use App\CQRS\Query\BlogPostsQuery;
-use App\Entity\Blog\Post;
 use App\Form\Type\Blog\BlogPostType;
-use App\Form\Type\Blog\ImageType;
-use App\Form\Type\Profile\ProfileImageUploadType;
 use App\Message\NewBlogPostMessage;
 use App\Repository\BlogPostRepository;
 use App\Request\NewBlogPostRequest;
 use App\Shared\AjaxFormErrorHandler;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -29,10 +27,13 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class BlogController extends AbstractController {
     private MessageBusInterface $bus;
     private RequestStack $requestStack;
+    private LoggerInterface $logger;
 
-    public function __construct(MessageBusInterface $bus, RequestStack $requestStack) {
+
+    public function __construct(MessageBusInterface $bus, RequestStack $requestStack, LoggerInterface $logger) {
         $this->bus = $bus;
         $this->requestStack = $requestStack;
+        $this->logger = $logger;
     }
 
     /**
