@@ -4,6 +4,7 @@ return [
     'navigation' => [
         'home' => 'Home',
         'blog' => 'Blog',
+        'games' => 'Games',
         'forum' => 'Forum',
         'login' => 'Login',
         'logout' => 'Logout',
@@ -20,6 +21,28 @@ return [
     'blog' => [
         'title' => 'Blog',
         'welcome' => 'Welcome to my blog.',
+        'latest' => 'Latest posts',
+        'no_posts' => 'No articles yet.',
+        'author' => 'Posted by',
+        'new-post' => 'New post',
+        'new_post' => [
+            'new' => 'New post',
+            'title' => 'Title',
+            'content' => 'Content',
+            'submit' => 'Submit',
+            'close' => 'Close',
+        ],
+        'form' => [
+            'title' => 'Title',
+            'content' => 'Content',
+            'submit' => 'Submit',
+            'close' => 'Close',
+        ],
+    ],
+
+    'games' => [
+        'title' => 'Games',
+        'welcome' => 'I do play a fair share of video games, and I occasionally post game related stuff here.',
         'latest' => 'Latest posts',
         'no_posts' => 'No articles yet.',
         'author' => 'Posted by',

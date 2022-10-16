@@ -28,6 +28,9 @@
                         <a href="{{ path('blog_index') }}"
                            class="collapsed-navigation__item"><span
                                 class="material-icons">rss_feed</span>{{ 'navigation.blog'|trans }}</a>
+                        <a href="{{ path('games_index') }}"
+                           class="collapsed-navigation__item"><span
+                                class="material-icons">videogame_asset</span>{{ 'navigation.games'|trans }}</a>
                         {% if app.user is null %}
                             <a href="{{ path('user_login') }}"
                                class="collapsed-navigation__item"><span
@@ -48,14 +51,17 @@
                     <div class="col-2 col-md-8">
                         <div class="navigation">
                             <a href="{{ path('home_index') }}"
-                               class="navigation__item{% if current_route == 'homepage' %} navigation__item_active{% endif %}"><span
+                               class="navigation__item{{ current_route == 'homepage' ? ' navigation__item_active' }}"><span
                                     class="material-icons">home</span> {{ 'navigation.home'|trans }}</a>
                             <a href="{{ path('blog_index') }}"
-                               class="navigation__item{% if current_route == 'blog_index' %} navigation__item_active{% endif %}"><span
+                               class="navigation__item{{ current_route == 'blog_index' ? ' navigation__item_active' }}"><span
                                     class="material-icons">rss_feed</span>{{ 'navigation.blog'|trans }}</a>
+                            <a href="{{ path('games_index') }}"
+                               class="navigation__item{{ current_route == 'games_index' ? ' navigation__item_active' }}"><span
+                                    class="material-icons">videogame_asset</span>{{ 'navigation.games'|trans }}</a>
                             {% if app.user is null %}
                                 <a href="{{ path('user_login') }}"
-                                   class="navigation__item{% if current_route == 'user_login' %} navigation__item_active{% endif %}"><span
+                                   class="navigation__item{{ current_route == 'user_login' ? ' navigation__item_active' }}"><span
                                         class="material-icons">login</span>{{ 'navigation.login'|trans }}</a>
                             {% elseif app.user %}
                                 <a href="{{ path('user_logout') }}"

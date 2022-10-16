@@ -4,6 +4,7 @@ return [
     'navigation' => [
         'home' => 'Hjem',
         'blog' => 'Blogg',
+        'games' => 'Spill',
         'forum' => 'Forum',
         'login' => 'Logg inn',
         'logout' => 'Logg ut',
@@ -20,6 +21,28 @@ return [
     'blog' => [
         'title' => 'Blogg',
         'welcome' => 'Velkommen til bloggen.',
+        'latest' => 'Siste artikler',
+        'no_posts' => 'Ingen artikler enda.',
+        'author' => 'Skrevet av',
+        'new-post' => 'Nytt innlegg',
+        'new_post' => [
+            'new' => 'Ny post',
+            'title' => 'Tittel',
+            'content' => 'Innhold',
+            'submit' => 'Send',
+            'close' => 'Lukk',
+        ],
+        'form' => [
+            'title' => 'Tittel',
+            'content' => 'Innhold',
+            'submit' => 'Send',
+            'close' => 'Lukk',
+        ],
+    ],
+
+    'games' => [
+        'title' => 'Spill',
+        'welcome' => 'Jeg spiller en del, på godt norsk: dataspill. Her poster jeg spillrelaterte ting fra tid til annen.',
         'latest' => 'Siste artikler',
         'no_posts' => 'Ingen artikler enda.',
         'author' => 'Skrevet av',
