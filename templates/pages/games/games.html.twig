@@ -1,6 +1,6 @@
 {% extends "grid/base.html.twig" %}
-{% set css = "game" %}
-{% set controller = "game" %}
+{% set css = "games" %}
+{% set controller = "games" %}
 
 {% block maincontent %}
 
@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col">
                 <h5>Game maps</h5>
-                <div class="btn btn-primary" data-action="click->game#newMap">New map</div>
+                <div class="btn btn-primary" data-action="click->games#createMap">New map</div>
             </div>
         </div>
 

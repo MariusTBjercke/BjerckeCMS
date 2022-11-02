@@ -1,0 +1,21 @@
+.games {
+  margin: 20px 0 20px 0;
+
+  &__new-map {
+    display: none;
+
+    &_show {
+      display: flex;
+    }
+  }
+
+  &__form {
+    &-wrapper {
+
+    }
+
+    &-title {
+      color: red;
+    }
+  }
+}

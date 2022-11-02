@@ -258,7 +258,7 @@ export default class Terminal {
     if (commandFunction) {
       commandFunction();
     } else {
-      this.echo("zsh: command not found: " + formattedCommand);
+      this.echo("bsh: command not found: " + formattedCommand);
     }
   }
 

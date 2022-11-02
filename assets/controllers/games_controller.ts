@@ -10,13 +10,14 @@ export default class extends Controller {
     this.addEventListeners();
   }
 
-  private newMap() {
+  private createMap() {
     this.isMapFormVisible = !this.isMapFormVisible;
+    const displayClass = "games__new-map_show";
 
     if (this.isMapFormVisible) {
-      this.newMapTarget.classList.add("maps__form_show");
+      this.newMapTarget.classList.add(displayClass);
     } else {
-      this.newMapTarget.classList.remove("maps__form_show");
+      this.newMapTarget.classList.remove(displayClass);
     }
   }
 
