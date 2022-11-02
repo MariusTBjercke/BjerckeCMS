@@ -28,6 +28,6 @@ class GamesController extends AbstractController {
      * @Route("/", name="games_index", methods={"GET"})
      */
     public function index(): Response {
-        return $this->render('pages/games/index.html.twig', []);
+        return $this->render('pages/games/games.html.twig', []);
     }
 }

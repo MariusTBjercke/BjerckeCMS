@@ -10,23 +10,8 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import "~material-icons/iconfont/material-icons";
 
-// Pages
-@import "~@assets/scss/pages/forum";
-@import "~@assets/scss/pages/home";
-@import "~@assets/scss/pages/blog";
-@import "~@assets/scss/pages/login";
-@import "~@assets/scss/pages/register";
-@import "~@assets/scss/pages/profile";
-
-// Components
-@import "~@assets/scss/components/header";
-@import "~@assets/scss/components/footer";
-@import "~@assets/scss/components/alert";
-@import "~@assets/scss/components/buttons";
+// Shared
 @import "~@assets/scss/shared";
-@import "~@assets/scss/components/billboard";
-@import "~@assets/scss/components/terminal";
-@import "~@assets/scss/components/smartphone";
 
 // Fonts
 //@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');

@@ -31,7 +31,7 @@ class UserController extends AbstractController {
             return $this->redirectToRoute('homepage', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('pages/register/index.html.twig', [
+        return $this->renderForm('pages/register/register.html.twig', [
             'form' => $form,
         ]);
     }
@@ -43,7 +43,7 @@ class UserController extends AbstractController {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->renderForm('pages/login/index.html.twig', [
+        return $this->renderForm('pages/login/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);

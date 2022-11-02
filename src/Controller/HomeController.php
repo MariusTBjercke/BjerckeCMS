@@ -29,7 +29,7 @@ class HomeController extends AbstractController {
      * @Route("/home", name="homepage")
      */
     public function index(TerminalController $terminal): Response {
-        return $this->render('pages/home/index.html.twig', [
+        return $this->render('pages/home/home.html.twig', [
             'terminal' => $terminal,
         ]);
     }

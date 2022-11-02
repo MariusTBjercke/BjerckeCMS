@@ -59,7 +59,7 @@ class ProfileController extends AbstractController {
             ],
         ]);
 
-        return $this->render('pages/profile/index.html.twig', [
+        return $this->render('pages/profile/profile.html.twig', [
             'form' => $form->createView(),
             'profile_image' => [
                 'src' => $imageSrc,

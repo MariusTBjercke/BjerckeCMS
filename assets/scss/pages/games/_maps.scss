@@ -1,0 +1,14 @@
+.maps {
+
+  &__form {
+    display: none;
+    border: 1px solid #000000;
+    min-width: 200px;
+    min-height: 200px;
+
+    &_show {
+      display: flex;
+    }
+  }
+
+}

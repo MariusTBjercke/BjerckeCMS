@@ -1,19 +1,20 @@
 import "./scss/style.scss";
 
-// start the Stimulus application
+// Require all files from the paths below, do not put any unused files there!
+requireAll(require.context("./scss/pages/", true, /\.scss$/));
+requireAll(require.context("./scss/components/", true, /\.scss$/));
+requireAll(require.context("./js/pages/", true, /\.js|ts$/));
+requireAll(require.context("./js/components/", true, /\.js|ts$/));
+
+// Start the Stimulus application
 import "./bootstrap";
 
 // Node modules
 import "bootstrap";
 
-// Pages
-import "@assets/js/pages/home";
-import "@assets/js/pages/forum";
-
-// Components
-import "@assets/js/components/header";
-import "@assets/js/components/footer";
-import "@assets/js/components/Alert";
-
 // Shared
 import "./js/shared/preload";
+
+function requireAll(r) {
+    r.keys().forEach(r);
+}

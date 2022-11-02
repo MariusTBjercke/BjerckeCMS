@@ -60,6 +60,7 @@ return [
             'submit' => 'Submit',
             'close' => 'Close',
         ],
+        'guides' => 'Guides',
     ],
 
     'forum' => [

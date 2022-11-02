@@ -1,0 +1,47 @@
+{% extends "grid/base.html.twig" %}
+{% set css = "game" %}
+{% set controller = "game" %}
+
+{% block maincontent %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>{{ 'games.title'|trans }}</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h5>I love playing video games, and occasionally I will post video game related stuff here.</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel urna eget elit aliquet lacinia. Sed nec erat ut mauris gravida aliquet.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h5>Game maps</h5>
+                <div class="btn btn-primary" data-action="click->game#newMap">New map</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {{ include('pages/games/_new_map_form.html.twig') }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h2>{{ 'games.guides'|trans }}</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h2>{{ 'games.latest'|trans }}</h2>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
