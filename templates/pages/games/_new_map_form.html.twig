@@ -1,12 +1,29 @@
-<div class="games__new-map" data-games-target="newMap">
-    <div class="games__form-wrapper">
-        <div class="games__form-title">
+<div class="maps__new" data-maps-target="newMap">
+    <div class="maps__form-wrapper">
+        <div class="maps__form-title">
             <h4>New Game Map</h4>
         </div>
+        <div class="maps__form">
+            {{ form_start(form) }}
+            <div class="maps__form-input">
+                {{ form_row(form.name) }}
+            </div>
+            <div class="maps__form-input">
+                {{ form_row(form.description) }}
+            </div>
+            <div class="maps__form-input">
+                {{ form_row(form.image) }}
+            </div>
+            <div class="maps__form-buttons">
+                <div class="maps__form-input">
+                    {{ form_row(form.submit) }}
+                </div>
+                <div class="maps__form-input">
+                    {{ form_row(form.close) }}
+                </div>
+            </div>
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
     </div>
-{#    {{ form_start(form) }}#}
-{#    {{ form_row(form.title) }}#}
-{#    {{ form_row(form.content) }}#}
-{#        {{ form_rest(form) }}#}
-{#    {{ form_end(form) }}#}
 </div>

@@ -6,19 +6,27 @@ namespace App\Controller;
 
 use App\Controller\Component\TerminalController;
 use App\Repository\BlogPostRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\Registry;
 
 class HomeController extends AbstractController {
-    private Registry $workflows;
+    private UserRepository $userRepository;
 
-    public function __construct(Registry $workflows) {
-        $this->workflows = $workflows;
+    /**
+     * Constructor.
+     *
+     * @param UserRepository $userRepository User repository.
+     */
+    public function __construct(UserRepository $userRepository) {
+        $this->userRepository = $userRepository;
     }
 
     /**
+     * Invoke.
+     *
      * @Route("/", name="home_index")
      */
     public function __invoke(): Response {
@@ -26,11 +34,18 @@ class HomeController extends AbstractController {
     }
 
     /**
+     * Index function.
+     *
      * @Route("/home", name="homepage")
+     * @param TerminalController $terminal Terminal controller.
+     * @return Response
      */
     public function index(TerminalController $terminal): Response {
+        $admin = $this->userRepository->findByUsernameOrThrow('marius');
+
         return $this->render('pages/home/home.html.twig', [
             'terminal' => $terminal,
+            'profile_image' => $admin->getProfileImage(),
         ]);
     }
 }

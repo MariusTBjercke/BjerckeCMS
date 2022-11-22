@@ -1,0 +1,29 @@
+{% extends "grid/base.html.twig" %}
+{% set css = "maps" %}
+{% set controller = "maps" %}
+
+{% block maincontent %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a href="{{ path("games_index") }}" class="btn btn-primary btn-sm">{{ 'games.maps.back'|trans }}</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h1>{{ 'games.maps.title'|trans }}</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h5>Game maps</h5>
+                <a href="{{ path("games_maps_new") }}">New map</a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

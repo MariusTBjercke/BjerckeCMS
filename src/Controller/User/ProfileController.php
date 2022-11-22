@@ -141,7 +141,7 @@ class ProfileController extends AbstractController {
         $user = $this->getUser();
 
         if (!$user instanceof User) {
-            return $this->redirectToRoute("homepage");
+            return $this->redirectToRoute('homepage');
         }
 
         // Remove user profile image.
@@ -149,6 +149,6 @@ class ProfileController extends AbstractController {
         $user->setProfileImage(null);
         $this->userRepository->save();
 
-        return $this->redirectToRoute("profile_index");
+        return $this->redirectToRoute('profile_index');
     }
 }

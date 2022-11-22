@@ -54,13 +54,20 @@ return [
             'submit' => 'Submit',
             'close' => 'Close',
         ],
-        'form' => [
-            'title' => 'Title',
-            'content' => 'Content',
-            'submit' => 'Submit',
-            'close' => 'Close',
-        ],
         'guides' => 'Guides',
+        'maps' => [
+            'title' => 'Maps',
+            'back' => 'Go back',
+            'form' => [
+                'title' => 'Title',
+                'content' => 'Content',
+                'description' => 'Description',
+                'image' => 'Map image',
+                'submit' => 'Submit',
+                'close' => 'Close',
+                'map_name' => 'Map name',
+            ],
+        ],
     ],
 
     'forum' => [
@@ -96,21 +103,15 @@ return [
     ],
 
     'user' => [
+        'username' => 'Username',
+        'password' => 'Password',
+        'repeat_password' => 'Repeat Password',
+        'firstname' => 'Firstname',
+        'lastname' => 'Lastname',
+        'email' => 'Email',
         'new' => 'New user',
+        'register' => 'Register',
     ],
-
-    'Username' => 'Username',
-    'Password' => 'Password',
-    'Repeat Password' => 'Repeat Password',
-    'Firstname' => 'Firstname',
-    'Lastname' => 'Lastname',
-    'Email' => 'Email',
-
-    'Title' => 'Title',
-    'Content' => 'Content',
-    'Submit' => 'Submit',
-    'Close' => 'Close',
-    'Register' => 'Register',
 
     'in development' => 'This page is currently under development.',
 ];

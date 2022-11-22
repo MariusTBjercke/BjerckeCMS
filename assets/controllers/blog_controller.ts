@@ -27,6 +27,7 @@ export default class extends Controller {
   }
 
   newPost() {
+    this.element;
     this.newPostTarget.classList.add("blog__new-post_show");
   }
 

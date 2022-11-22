@@ -1,6 +1,6 @@
 {% extends "grid/base.html.twig" %}
-{% set css = "games" %}
-{% set controller = "games" %}
+{% set css = "maps" %}
+{% set controller = "maps" %}
 
 {% block maincontent %}
 
@@ -13,14 +13,14 @@
 
         <div class="row">
             <div class="col">
-                <h5>I love playing video games, and occasionally I will post video game related stuff here.</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel urna eget elit aliquet lacinia. Sed nec erat ut mauris gravida aliquet.</p>
+                <h5>New map</h5>
+                <div class="btn btn-primary d-inline-block" data-action="click->maps#show">New map</div>
             </div>
         </div>
 
         <div class="row">
             <div class="col">
-                <a href="{{ path('games_maps') }}">Game maps</a>
+                {{ include('pages/games/_new_map_form.html.twig') }}
             </div>
         </div>
 

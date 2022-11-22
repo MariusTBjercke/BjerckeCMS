@@ -20,6 +20,8 @@ return static function (SecurityConfig $security) {
         ->property('username');
     $security->passwordHasher(PasswordAuthenticatedUserInterface::class)->algorithm('auto');
 
+    $security->roleHierarchy('ROLE_ADMIN', ['ROLE_USER']);
+
     // Block access to the profile page and all its sub-pages.
     $security
         ->accessControl()

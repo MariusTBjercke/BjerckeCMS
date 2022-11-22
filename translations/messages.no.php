@@ -42,7 +42,8 @@ return [
 
     'games' => [
         'title' => 'Spill',
-        'welcome' => 'Jeg spiller en del, på godt norsk: dataspill. Her poster jeg spillrelaterte ting fra tid til annen.',
+        'welcome' =>
+            'Jeg spiller en del, på godt norsk: dataspill. Her poster jeg spillrelaterte ting fra tid til annen.',
         'latest' => 'Siste artikler',
         'no_posts' => 'Ingen artikler enda.',
         'author' => 'Skrevet av',
@@ -54,13 +55,20 @@ return [
             'submit' => 'Send',
             'close' => 'Lukk',
         ],
-        'form' => [
-            'title' => 'Tittel',
-            'content' => 'Innhold',
-            'submit' => 'Send',
-            'close' => 'Lukk',
-        ],
         'guides' => 'Guides',
+        'maps' => [
+            'title' => 'Kart',
+            'back' => 'Gå tilbake',
+            'form' => [
+                'title' => 'Tittel',
+                'content' => 'Innhold',
+                'description' => 'Beskrivelse',
+                'image' => 'Bilde av kartet',
+                'submit' => 'Send',
+                'close' => 'Lukk',
+                'map_name' => 'Kartnavn',
+            ],
+        ],
     ],
 
     'forum' => [
@@ -96,21 +104,15 @@ return [
     ],
 
     'user' => [
+        'username' => 'Brukernavn',
+        'password' => 'Passord',
+        'repeat_password' => 'Gjenta passord',
+        'firstname' => 'Fornavn',
+        'lastname' => 'Etternavn',
+        'email' => 'E-post',
         'new' => 'Ny bruker',
+        'register' => 'Registerer deg',
     ],
-
-    'Username' => 'Brukernavn',
-    'Password' => 'Passord',
-    'Repeat Password' => 'Gjenta Passord',
-    'Firstname' => 'Fornavn',
-    'Lastname' => 'Etternavn',
-    'Email' => 'E-post',
-
-    'Title' => 'Tittel',
-    'Content' => 'Innhold',
-    'Submit' => 'Send',
-    'Close' => 'Lukk',
-    'Register' => 'Registrer',
 
     'in development' => 'Denne siden er for øyeblikket under utvikling.',
 ];

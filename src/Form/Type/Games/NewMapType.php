@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Form\Type\Blog;
+namespace App\Form\Type\Games;
 
-use App\Request\NewBlogPostRequest;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
-class BlogPostType extends AbstractType {
+class NewMapType extends AbstractType {
     /**
      * Build the form.
      *
@@ -20,33 +21,47 @@ class BlogPostType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
-            ->add('title', TextType::class, [
-                'label' => 'blog.title',
+            ->add('name', TextType::class, [
+                'label' => 'games.maps.form.map_name',
                 'required' => true,
                 'attr' => [
-                    'data-blog-target' => 'title',
+                    'data-maps-target' => 'mapName',
                     'id' => 'title',
                 ],
             ])
-            ->add('content', TextType::class, [
-                'label' => 'blog.form.content',
+            ->add('description', TextType::class, [
+                'label' => 'games.maps.form.description',
                 'required' => false,
                 'attr' => [
-                    'data-blog-target' => 'content',
+                    'data-maps-target' => 'content',
                     'id' => 'content',
                 ],
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'blog.form.submit',
+            ->add('image', FileType::class, [
+                'label' => 'games.maps.form.image',
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '10M',
+                        'mimeTypes' => ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'],
+                        'mimeTypesMessage' => 'Please upload a valid image (JPG, PNG, GIF).',
+                    ]),
+                ],
                 'attr' => [
-                    'data-action' => 'click->blog#submit',
+                    'data-maps-target' => 'fileInput',
+                ],
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'games.maps.form.submit',
+                'attr' => [
+                    'data-action' => 'click->maps#submit',
                     'class' => 'btn',
                 ],
             ])
             ->add('close', ButtonType::class, [
-                'label' => 'blog.form.close',
+                'label' => 'games.maps.form.close',
                 'attr' => [
-                    'data-action' => 'click->blog#close',
+                    'data-action' => 'click->maps#hide',
                     'class' => 'btn',
                 ],
             ]);
@@ -59,8 +74,6 @@ class BlogPostType extends AbstractType {
      * @return void
      */
     public function configureOptions(OptionsResolver $resolver): void {
-        $resolver->setDefaults([
-            'data_class' => NewBlogPostRequest::class,
-        ]);
+        $resolver->setDefaults([]);
     }
 }

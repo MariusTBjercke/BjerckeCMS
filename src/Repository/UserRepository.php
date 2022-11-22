@@ -51,6 +51,22 @@ class UserRepository extends ServiceEntityRepository {
         return $user;
     }
 
+    /**
+     * Find user by username or throw an exception.
+     *
+     * @param string $username Username.
+     * @return User
+     */
+    public function findByUsernameOrThrow(string $username): User {
+        $user = $this->findOneBy(['username' => $username]);
+
+        if (!$user) {
+            throw new UserNotFoundException('User not found');
+        }
+
+        return $user;
+    }
+
     public function findByUsername(string $username): ?User {
         return $this->findOneBy(['username' => $username]);
     }

@@ -18,7 +18,7 @@ class UserType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
             ->add('username', TextType::class, [
-                'label' => 'Username',
+                'label' => 'user.username',
                 'required' => true,
                 'constraints' => [new NotBlank(), new Length(['min' => 3])],
                 'attr' => [
@@ -26,14 +26,14 @@ class UserType extends AbstractType {
                 ],
             ])
             ->add('firstname', TextType::class, [
-                'label' => 'Firstname',
+                'label' => 'user.firstname',
                 'required' => true,
                 'constraints' => [new NotBlank(), new Length(['min' => 1])],
                 'attr' => [
                     'id' => 'firstname',
                 ],
             ])
-            ->add('lastname', TextType::class, [
+            ->add('user.lastname', TextType::class, [
                 'label' => 'Lastname',
                 'required' => true,
                 'constraints' => [new NotBlank(), new Length(['min' => 1])],
@@ -48,20 +48,20 @@ class UserType extends AbstractType {
                 'required' => true,
                 'constraints' => [new NotBlank(), new Length(['min' => 6])],
                 'first_options' => [
-                    'label' => 'Password',
+                    'label' => 'user.password',
                     'attr' => [
                         'id' => 'password',
                     ],
                 ],
                 'second_options' => [
-                    'label' => 'Repeat Password',
+                    'label' => 'user.repeat_password',
                     'attr' => [
                         'id' => 'password-confirm',
                     ],
                 ],
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'user.email',
                 'required' => true,
                 'constraints' => [new NotBlank(), new Length(['min' => 3])],
                 'attr' => [
@@ -69,7 +69,7 @@ class UserType extends AbstractType {
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Register',
+                'label' => 'user.register',
                 'attr' => [
                     'class' => 'btn',
                 ],

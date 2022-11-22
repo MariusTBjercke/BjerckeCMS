@@ -1,0 +1,26 @@
+{% extends "grid/base.html.twig" %}
+{% set css = "mapeditor" %}
+{% set controller = "mapeditor" %}
+
+{% block maincontent %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <h2>Map Editor</h2>
+
+                <div class="mapeditor__editor mapeditor__preload" data-map-id="{{ id }}" data-mapeditor-target="editor" data-image-src="{{ asset('/uploads/images/' ~ map.image) }}">
+                    <div class="mapeditor__background-container">
+                        <div class="mapeditor__background-overlay">
+                            <div class="mapeditor__interactive-canvas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
